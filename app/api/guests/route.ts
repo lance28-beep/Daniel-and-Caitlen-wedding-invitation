@@ -2,7 +2,7 @@ import { type NextRequest, NextResponse } from "next/server"
 
 // ⚠️ IMPORTANT: Replace this with your NEW Google Apps Script deployment URL
 // This should be the URL from deploying google-apps-script/guest-management.js
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzwuJF6ooYBPu07m8vdMDFkSh5ZazSa4K0kaZebKh5gH1otC3JvSJLUqvqhTGlax6cL/exec'
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyx6lwr6MGBZXg9DxUjfrXDv-ZvBImHpiclOfsm0i0qR_tCRx78FRg0gY6D9fYrnJHk/exec'
 
 // New Guest interface matching the improved system
 export interface Guest {
