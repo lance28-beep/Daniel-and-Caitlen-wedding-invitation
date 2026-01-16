@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react"
 import { Heart, RefreshCw, TrendingUp, Mail, Users, MapPin, Calendar, Crown } from "lucide-react"
 import { Cormorant_Garamond } from "next/font/google"
-import Image from "next/image"
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -35,6 +34,7 @@ export function BookOfGuests() {
   const [lastUpdate, setLastUpdate] = useState<Date>(new Date())
   const [previousTotal, setPreviousTotal] = useState(0)
   const [showIncrease, setShowIncrease] = useState(false)
+  const [stars, setStars] = useState<Array<{ x: number; y: number; size: number; opacity: number }>>([])
 
   // Helper function to get initials from name
   const getInitials = (name: string): string => {
@@ -107,6 +107,30 @@ export function BookOfGuests() {
     }
   }
 
+  // Generate star particles
+  useEffect(() => {
+    const starCount = 150;
+    const newStars = Array.from({ length: starCount }, () => {
+      const randomY = Math.random();
+      let y: number;
+      if (randomY < 0.6) {
+        y = Math.random() * 40;
+      } else if (randomY < 0.85) {
+        y = Math.random() * 40 + 40;
+      } else {
+        y = Math.random() * 20 + 80;
+      }
+      
+      return {
+        x: Math.random() * 100,
+        y: y,
+        size: Math.random() * 1 + 0.5,
+        opacity: Math.random() * 0.7 + 0.3,
+      };
+    });
+    setStars(newStars);
+  }, []);
+
   useEffect(() => {
     // Initial fetch
     fetchGuests()
@@ -141,60 +165,26 @@ export function BookOfGuests() {
       <div 
         className="absolute inset-0 -z-10"
         style={{
-          background: "linear-gradient(to bottom, #8EA58B, #BCCFC0)",
+          background: "linear-gradient(to bottom, #0C1230, #1D2A73, #163693)",
         }}
       />
-      
-      {/* Flower decoration - top left corner */}
-      <div className="absolute left-0 top-0 z-0 pointer-events-none">
-        <Image
-          src="/decoration/flower-decoration-left-bottom-corner2.png"
-          alt="Flower decoration"
-          width={300}
-          height={300}
-          className="w-auto h-auto max-w-[160px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-[280px] opacity-60 scale-y-[-1]"
-          priority={false}
-          style={{ filter: 'brightness(0) saturate(100%) invert(20%) sepia(15%) saturate(800%) hue-rotate(140deg) brightness(95%) contrast(90%)' }}
-        />
-      </div>
-      
-      {/* Flower decoration - top right corner */}
-      <div className="absolute right-0 top-0 z-0 pointer-events-none">
-        <Image
-          src="/decoration/flower-decoration-left-bottom-corner2.png"
-          alt="Flower decoration"
-          width={300}
-          height={300}
-          className="w-auto h-auto max-w-[160px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-[280px] opacity-60 scale-x-[-1] scale-y-[-1]"
-          priority={false}
-          style={{ filter: 'brightness(0) saturate(100%) invert(20%) sepia(15%) saturate(800%) hue-rotate(140deg) brightness(95%) contrast(90%)' }}
-        />
-      </div>
-      
-      {/* Flower decoration - left bottom corner */}
-      <div className="absolute left-0 bottom-0 z-0 pointer-events-none">
-        <Image
-          src="/decoration/flower-decoration-left-bottom-corner2.png"
-          alt="Flower decoration"
-          width={300}
-          height={300}
-          className="w-auto h-auto max-w-[160px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-[280px] opacity-60"
-          priority={false}
-          style={{ filter: 'brightness(0) saturate(100%) invert(20%) sepia(15%) saturate(800%) hue-rotate(140deg) brightness(95%) contrast(90%)' }}
-        />
-      </div>
-      
-      {/* Flower decoration - right bottom corner */}
-      <div className="absolute right-0 bottom-0 z-0 pointer-events-none">
-        <Image
-          src="/decoration/flower-decoration-left-bottom-corner2.png"
-          alt="Flower decoration"
-          width={300}
-          height={300}
-          className="w-auto h-auto max-w-[160px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-[280px] opacity-60 scale-x-[-1]"
-          priority={false}
-          style={{ filter: 'brightness(0) saturate(100%) invert(20%) sepia(15%) saturate(800%) hue-rotate(140deg) brightness(95%) contrast(90%)' }}
-        />
+
+      {/* Star particles */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        {stars.map((star, index) => (
+          <div
+            key={index}
+            className="absolute rounded-full bg-white"
+            style={{
+              left: `${star.x}%`,
+              top: `${star.y}%`,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              opacity: star.opacity,
+              boxShadow: `0 0 ${star.size * 1.5}px rgba(255, 255, 255, ${star.opacity * 0.6})`,
+            }}
+          />
+        ))}
       </div>
 
       {/* Section Header - More Compact */}
@@ -218,11 +208,11 @@ export function BookOfGuests() {
 
         {/* Decorative element */}
         <div className="flex items-center justify-center gap-1 sm:gap-1.5 mt-1.5 sm:mt-2.5 md:mt-3">
-          <div className="w-6 sm:w-10 md:w-12 h-px bg-gradient-to-r from-transparent via-[#324D3E]/80 to-transparent" />
-          <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 bg-[#324D3E]/80 rounded-full" />
-          <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 bg-[#324D3E]/60 rounded-full" />
-          <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 bg-[#324D3E]/80 rounded-full" />
-          <div className="w-6 sm:w-10 md:w-12 h-px bg-gradient-to-l from-transparent via-[#324D3E]/80 to-transparent" />
+          <div className="w-6 sm:w-10 md:w-12 h-px bg-gradient-to-r from-transparent via-[#1D2A73]/80 to-transparent" />
+          <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 bg-[#1D2A73]/80 rounded-full" />
+          <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 bg-[#1D2A73]/60 rounded-full" />
+          <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 bg-[#1D2A73]/80 rounded-full" />
+          <div className="w-6 sm:w-10 md:w-12 h-px bg-gradient-to-l from-transparent via-[#1D2A73]/80 to-transparent" />
         </div>
       </div>
 
@@ -231,40 +221,40 @@ export function BookOfGuests() {
         {/* Stats card - Simplified */}
         <div className="text-center mb-2.5 sm:mb-4 md:mb-6 px-2 sm:px-4 md:px-6">
           <div className="relative max-w-3xl mx-auto">
-            <div className="relative bg-white/95 backdrop-blur-md border border-[#324D3E]/40 rounded-lg sm:rounded-xl p-3 sm:p-5 md:p-6 shadow-md">
+            <div className="relative bg-white/95 backdrop-blur-md border border-[#1D2A73]/40 rounded-lg sm:rounded-xl p-3 sm:p-5 md:p-6 shadow-md">
               
               {/* Refresh button */}
               <button
                 onClick={() => fetchGuests(true)}
                 disabled={isRefreshing}
-                className="absolute top-1.5 right-1.5 sm:top-2 sm:right-2 p-1 sm:p-1.5 rounded-full bg-[#324D3E]/10 hover:bg-[#324D3E]/20 transition-all duration-300 disabled:opacity-50 group z-10"
+                className="absolute top-1.5 right-1.5 sm:top-2 sm:right-2 p-1 sm:p-1.5 rounded-full bg-[#1D2A73]/10 hover:bg-[#1D2A73]/20 transition-all duration-300 disabled:opacity-50 group z-10"
                 title="Refresh counts"
               >
-                <RefreshCw className={`h-3 w-3 sm:h-3.5 sm:w-3.5 text-[#324D3E] transition-transform ${isRefreshing ? 'animate-spin' : 'group-hover:rotate-180'} duration-500`} />
+                <RefreshCw className={`h-3 w-3 sm:h-3.5 sm:w-3.5 text-[#1D2A73] transition-transform ${isRefreshing ? 'animate-spin' : 'group-hover:rotate-180'} duration-500`} />
               </button>
 
               {/* Main Count with inline text */}
               <div className="mb-1.5 sm:mb-2.5">
                 <div className="flex items-center justify-center gap-1.5 sm:gap-2 flex-wrap">
-                  <h3 className={`${cormorant.className} text-xl sm:text-3xl md:text-4xl font-bold text-[#324D3E] transition-all duration-500 ${showIncrease ? 'scale-110 text-[#324D3E]' : ''}`}>
+                  <h3 className={`${cormorant.className} text-xl sm:text-3xl md:text-4xl font-bold text-[#1D2A73] transition-all duration-500 ${showIncrease ? 'scale-110 text-[#1D2A73]' : ''}`}>
                     {totalGuests}
                   </h3>
                   {showIncrease && (
-                    <TrendingUp className="h-3.5 w-3.5 sm:h-5 sm:w-5 text-[#324D3E] animate-bounce" />
+                    <TrendingUp className="h-3.5 w-3.5 sm:h-5 sm:w-5 text-[#1D2A73] animate-bounce" />
                   )}
-                  <p className={`${cormorant.className} text-sm sm:text-lg md:text-xl text-[#324D3E] font-medium leading-tight`}>
+                  <p className={`${cormorant.className} text-sm sm:text-lg md:text-xl text-[#1D2A73] font-medium leading-tight`}>
                     {totalGuests === 1 ? "Guest" : "Guests"} Celebrating With Us
                   </p>
                 </div>
               </div>
 
               {/* RSVP Count */}
-              <p className={`${cormorant.className} text-xs sm:text-base text-[#324D3E]/90 mb-2 sm:mb-3`}>
+              <p className={`${cormorant.className} text-xs sm:text-base text-[#1D2A73]/90 mb-2 sm:mb-3`}>
                 {rsvpCount} {rsvpCount === 1 ? "RSVP entry" : "RSVP entries"}
               </p>
               
               {/* Message */}
-              <p className={`${cormorant.className} text-[10px] sm:text-xs md:text-sm text-[#324D3E]/90 leading-tight`}>
+              <p className={`${cormorant.className} text-[10px] sm:text-xs md:text-sm text-[#1D2A73]/90 leading-tight`}>
                 Thank you for confirming your RSVP! Your presence means the world to us.
               </p>
             </div>
@@ -278,13 +268,13 @@ export function BookOfGuests() {
               {confirmedGuests.map((guest) => (
                 <div
                   key={guest.id}
-                  className="relative group bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-2.5 sm:p-4 md:p-6 shadow-sm hover:shadow-lg transition-all duration-300 border border-[#324D3E]/30 hover:border-[#324D3E]/60"
+                  className="relative group bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-2.5 sm:p-4 md:p-6 shadow-sm hover:shadow-lg transition-all duration-300 border border-[#1D2A73]/30 hover:border-[#1D2A73]/60"
                 >
                   {/* Guest Header */}
                   <div className="flex items-start gap-2 sm:gap-3 md:gap-4 mb-2 sm:mb-2.5 md:mb-3">
                     {/* Avatar - Mobile Optimized */}
                     <div className="relative flex-shrink-0">
-                      <div className="w-9 h-9 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-[#324D3E] flex items-center justify-center shadow-md ring-2 ring-white/50">
+                      <div className="w-9 h-9 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-[#1D2A73] flex items-center justify-center shadow-md ring-2 ring-white/50">
                         <span className="text-white font-semibold text-xs sm:text-base md:text-lg">
                           {getInitials(guest.name)}
                         </span>
@@ -302,11 +292,11 @@ export function BookOfGuests() {
                     {/* Guest Info - Mobile Optimized */}
                     <div className="flex-1 min-w-0">
                       <div className="mb-1 sm:mb-1.5">
-                        <h3 className="text-xs sm:text-base md:text-lg font-semibold sm:font-bold text-[#324D3E] leading-tight mb-0.5">
+                        <h3 className="text-xs sm:text-base md:text-lg font-semibold sm:font-bold text-[#1D2A73] leading-tight mb-0.5">
                           {guest.name}
                         </h3>
                         {guest.role && (
-                          <p className="text-[9px] sm:text-[10px] md:text-xs text-[#324D3E]/80 font-medium">
+                          <p className="text-[9px] sm:text-[10px] md:text-xs text-[#1D2A73]/80 font-medium">
                             {guest.role}
                           </p>
                         )}
@@ -314,8 +304,8 @@ export function BookOfGuests() {
 
                       {/* Email - Mobile Optimized */}
                       {guest.email && (
-                        <div className="flex items-center gap-1 text-[9px] sm:text-[10px] md:text-xs text-[#324D3E]/70 mb-1.5 sm:mb-2 md:mb-3">
-                          <Mail className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-[#324D3E]/60 flex-shrink-0" />
+                        <div className="flex items-center gap-1 text-[9px] sm:text-[10px] md:text-xs text-[#1D2A73]/70 mb-1.5 sm:mb-2 md:mb-3">
+                          <Mail className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-[#1D2A73]/60 flex-shrink-0" />
                           <span className="truncate">{guest.email}</span>
                         </div>
                       )}
@@ -323,21 +313,21 @@ export function BookOfGuests() {
                       {/* Info Badges - Mobile Optimized */}
                       <div className="flex flex-wrap items-center gap-1 sm:gap-1.5 md:gap-2 mb-1.5 sm:mb-2 md:mb-3">
                         {/* Guest count badge */}
-                        <div className="flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 md:px-2.5 py-0.5 sm:py-1 bg-[#324D3E]/10 border border-[#324D3E]/30 rounded sm:rounded-md md:rounded-lg">
-                          <Users className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-3.5 md:w-3.5 text-[#324D3E]" />
-                          <span className="text-[9px] sm:text-[10px] md:text-xs font-semibold text-[#324D3E]">
+                        <div className="flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 md:px-2.5 py-0.5 sm:py-1 bg-[#1D2A73]/10 border border-[#1D2A73]/30 rounded sm:rounded-md md:rounded-lg">
+                          <Users className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-3.5 md:w-3.5 text-[#1D2A73]" />
+                          <span className="text-[9px] sm:text-[10px] md:text-xs font-semibold text-[#1D2A73]">
                             {guest.allowedGuests} {guest.allowedGuests === 1 ? 'Guest' : 'Guests'}
                           </span>
                         </div>
 
                         {/* Table badge */}
-                        <div className="flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 md:px-2.5 py-0.5 sm:py-1 bg-[#324D3E]/10 border border-[#324D3E]/40 sm:border-2 rounded sm:rounded-md md:rounded-lg">
-                          <MapPin className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-3.5 md:w-3.5 text-[#324D3E]" />
-                          <span className="text-[9px] sm:text-[10px] md:text-xs font-semibold sm:font-bold text-[#324D3E]">
+                        <div className="flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 md:px-2.5 py-0.5 sm:py-1 bg-[#1D2A73]/10 border border-[#1D2A73]/40 sm:border-2 rounded sm:rounded-md md:rounded-lg">
+                          <MapPin className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-3.5 md:w-3.5 text-[#1D2A73]" />
+                          <span className="text-[9px] sm:text-[10px] md:text-xs font-semibold sm:font-bold text-[#1D2A73]">
                             {guest.tableNumber && guest.tableNumber.trim() !== "" ? (
                               <>Table {guest.tableNumber}</>
                             ) : (
-                              <span className="text-[#324D3E]/60 font-medium">Not Assigned</span>
+                              <span className="text-[#1D2A73]/60 font-medium">Not Assigned</span>
                             )}
                           </span>
                         </div>
@@ -345,28 +335,28 @@ export function BookOfGuests() {
 
                       {/* Message - Mobile Optimized */}
                       {guest.message && guest.message.trim() !== "" && (
-                        <div className="relative mb-1.5 sm:mb-2.5 md:mb-3 p-2 sm:p-3 md:p-5 bg-white rounded sm:rounded-lg md:rounded-2xl border border-[#324D3E]/30 shadow-sm overflow-hidden">
+                        <div className="relative mb-1.5 sm:mb-2.5 md:mb-3 p-2 sm:p-3 md:p-5 bg-white rounded sm:rounded-lg md:rounded-2xl border border-[#1D2A73]/30 shadow-sm overflow-hidden">
                           {/* Decorative corner elements - smaller on mobile */}
                           <div className="absolute top-0 left-0 w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 opacity-[0.08]">
-                            <svg viewBox="0 0 100 100" className="text-[#324D3E]" fill="currentColor">
+                            <svg viewBox="0 0 100 100" className="text-[#1D2A73]" fill="currentColor">
                               <path d="M0,0 L100,0 L0,100 Z" />
                             </svg>
                           </div>
                           <div className="absolute bottom-0 right-0 w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 opacity-[0.08]">
-                            <svg viewBox="0 0 100 100" className="text-[#324D3E]" fill="currentColor">
+                            <svg viewBox="0 0 100 100" className="text-[#1D2A73]" fill="currentColor">
                               <path d="M100,100 L0,100 L100,0 Z" />
                             </svg>
                           </div>
                           
                           {/* Opening quote - smaller on mobile */}
-                          <div className="absolute top-1 left-1 sm:top-1.5 sm:left-1.5 md:top-2 md:left-2 text-[#324D3E]/25">
+                          <div className="absolute top-1 left-1 sm:top-1.5 sm:left-1.5 md:top-2 md:left-2 text-[#1D2A73]/25">
                             <svg className="w-3 h-3 sm:w-4 sm:h-4 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24">
                               <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" />
                             </svg>
                           </div>
                           
                           {/* Closing quote - smaller on mobile */}
-                          <div className="absolute bottom-1 right-1 sm:bottom-1.5 sm:right-1.5 md:bottom-2 md:right-2 text-[#324D3E]/25">
+                          <div className="absolute bottom-1 right-1 sm:bottom-1.5 sm:right-1.5 md:bottom-2 md:right-2 text-[#1D2A73]/25">
                             <svg className="w-3 h-3 sm:w-4 sm:h-4 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24">
                               <path d="M18 7h-3l-2 4v6h6v-6h-3zm-8 0H7l-2 4v6h6v-6h-3z" />
                             </svg>
@@ -374,29 +364,29 @@ export function BookOfGuests() {
 
                           {/* Message content */}
                           <div className="relative px-0.5 sm:px-1">
-                            <p className="text-[10px] sm:text-xs md:text-base text-[#324D3E] leading-tight sm:leading-relaxed italic font-medium">
+                            <p className="text-[10px] sm:text-xs md:text-base text-[#1D2A73] leading-tight sm:leading-relaxed italic font-medium">
                               {guest.message}
                             </p>
                           </div>
 
                           {/* Elegant border accent - smaller on mobile */}
-                          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 sm:w-0.5 md:w-1 h-8 sm:h-12 md:h-16 bg-gradient-to-b from-transparent via-[#324D3E] to-transparent rounded-r-full" />
+                          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 sm:w-0.5 md:w-1 h-8 sm:h-12 md:h-16 bg-gradient-to-b from-transparent via-[#1D2A73] to-transparent rounded-r-full" />
                         </div>
                       )}
 
                       {/* Companions - Mobile Optimized */}
                       {guest.companions && guest.companions.length > 0 && (
-                        <div className="pt-1.5 sm:pt-2 md:pt-2.5 border-t border-[#324D3E]/20">
+                        <div className="pt-1.5 sm:pt-2 md:pt-2.5 border-t border-[#1D2A73]/20">
                           <div className="flex items-center gap-1 mb-1 sm:mb-1.5">
-                            <Users className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-3.5 md:w-3.5 text-[#324D3E]" />
-                            <span className="text-[9px] sm:text-[10px] md:text-xs font-semibold text-[#324D3E]">Companions</span>
+                            <Users className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-3.5 md:w-3.5 text-[#1D2A73]" />
+                            <span className="text-[9px] sm:text-[10px] md:text-xs font-semibold text-[#1D2A73]">Companions</span>
                           </div>
                           <div className="flex flex-wrap gap-1 sm:gap-1.5">
                             {guest.companions.map((companion, idx) => (
-                              <div key={idx} className="inline-flex items-center gap-1 sm:gap-1.5 px-1.5 sm:px-2 md:px-2.5 py-0.5 sm:py-1 bg-white border border-[#324D3E]/30 rounded sm:rounded-md md:rounded-lg hover:border-[#324D3E]/50 transition-colors">
-                                <span className="text-[9px] sm:text-[10px] md:text-xs font-medium text-[#324D3E] whitespace-nowrap">{companion.name}</span>
+                              <div key={idx} className="inline-flex items-center gap-1 sm:gap-1.5 px-1.5 sm:px-2 md:px-2.5 py-0.5 sm:py-1 bg-white border border-[#1D2A73]/30 rounded sm:rounded-md md:rounded-lg hover:border-[#1D2A73]/50 transition-colors">
+                                <span className="text-[9px] sm:text-[10px] md:text-xs font-medium text-[#1D2A73] whitespace-nowrap">{companion.name}</span>
                                 {companion.relationship && companion.relationship.trim() !== "" && (
-                                  <span className="text-[8px] sm:text-[9px] md:text-[10px] text-[#324D3E] bg-[#324D3E]/10 px-1.5 sm:px-2 py-0.5 rounded-full font-medium border border-[#324D3E]/20 whitespace-nowrap">
+                                  <span className="text-[8px] sm:text-[9px] md:text-[10px] text-[#1D2A73] bg-[#1D2A73]/10 px-1.5 sm:px-2 py-0.5 rounded-full font-medium border border-[#1D2A73]/20 whitespace-nowrap">
                                     {companion.relationship}
                                   </span>
                                 )}
@@ -407,9 +397,9 @@ export function BookOfGuests() {
                       )}
 
                       {/* Footer - Mobile Optimized */}
-                      <div className="flex items-center gap-1 pt-1.5 sm:pt-2 md:pt-2.5 mt-1.5 sm:mt-2 md:mt-2.5 border-t border-[#324D3E]/20">
-                        <Calendar className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-[#324D3E]/60" />
-                        <span className="text-[8px] sm:text-[9px] md:text-[10px] text-[#324D3E]/70">
+                      <div className="flex items-center gap-1 pt-1.5 sm:pt-2 md:pt-2.5 mt-1.5 sm:mt-2 md:mt-2.5 border-t border-[#1D2A73]/20">
+                        <Calendar className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-[#1D2A73]/60" />
+                        <span className="text-[8px] sm:text-[9px] md:text-[10px] text-[#1D2A73]/70">
                           Confirmed {formatDate(guest.updatedAt)}
                         </span>
                       </div>

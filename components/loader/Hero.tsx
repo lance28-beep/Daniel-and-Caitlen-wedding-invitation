@@ -7,19 +7,19 @@ interface HeroProps {
 }
 
 const desktopImages: string[] = [
-  '/desktop-background/couple (12).webp',
-  '/desktop-background/couple (9).webp',
-  '/desktop-background/couple (5).webp',
+  '/desktop-background/couple (1).webp',
+  '/desktop-background/couple (2).webp',
+  '/desktop-background/couple (3).webp',
   '/desktop-background/couple (4).webp',
-  '/desktop-background/couple (7).webp',
+  '/desktop-background/couple (5).webp',
 ];
 
 const mobileImages: string[] = [
   '/mobile-background/couple (1).webp',
   '/mobile-background/couple (2).webp',
   '/mobile-background/couple (3).webp',
-  '/mobile-background/couple (4).webp',
-  '/mobile-background/couple (5).webp',
+  '/mobile-background/couple (1).webp',
+  '/mobile-background/couple (2).webp',
 ];
 
 export const Hero: React.FC<HeroProps> = ({ onOpen, visible }) => {
@@ -54,7 +54,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpen, visible }) => {
       <div className="absolute inset-0 z-0">
         {images.map((src, i) => (
           <img
-            key={src}
+            key={`${src}-${i}`}
             src={src}
             alt="Couple"
             className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${i === index ? 'opacity-100' : 'opacity-0'}`}
@@ -65,7 +65,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpen, visible }) => {
         <div 
           className="absolute inset-0 pointer-events-none"
           style={{
-            backgroundColor: 'rgba(188, 207, 192, 0.6)'
+            backgroundColor: 'rgba(29, 42, 115, 0.6)'
           }}
         />
       </div>
@@ -79,12 +79,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpen, visible }) => {
             {/* Monogram Image */}
             <div className="relative w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44">
               <Image
-                src="/monogram/monogramnew.png"
+                src="/monogram/monogram-new.png"
                 alt="Denmark & Rizchelle Monogram"
                 fill
                 className="object-contain"
                 priority
-                style={{ filter: 'brightness(0) saturate(100%) invert(20%) sepia(15%) saturate(800%) hue-rotate(140deg) brightness(95%) contrast(90%)' }}
               />
             </div>
           </div>
@@ -98,7 +97,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpen, visible }) => {
             style={{
               fontFamily: '"Great Vibes", cursive',
               fontWeight: 400,
-              color: '#324D3E',
+              color: '#FFFFFF',
             }}
           >
             You are
@@ -109,7 +108,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpen, visible }) => {
             style={{
               fontFamily: '"Cinzel", serif',
               fontWeight: 700,
-              color: '#324D3E',
+              color: '#FFFFFF',
             }}
           >
             Invited!
@@ -121,19 +120,19 @@ export const Hero: React.FC<HeroProps> = ({ onOpen, visible }) => {
             }}
             className="px-10 py-4 font-serif text-sm tracking-[0.2em] uppercase rounded-sm border transition-all duration-300"
             style={{
-              backgroundColor: '#324D3E',
-              borderColor: '#324D3E',
-              color: '#FFFFFF',
+              backgroundColor: '#FFD83F',
+              borderColor: '#FFD83F',
+              color: '#0C1230',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#2a4035';
+              e.currentTarget.style.backgroundColor = '#FFE066';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = '#324D3E';
+              e.currentTarget.style.backgroundColor = '#FFD83F';
             }}
           >
             <span
-              style={{ fontFamily: '"Cinzel", serif', fontWeight: 500, color: '#FFFFFF' }}
+              style={{ fontFamily: '"Cinzel", serif', fontWeight: 500, color: '#0C1230' }}
             >
               Open Invitation
             </span>

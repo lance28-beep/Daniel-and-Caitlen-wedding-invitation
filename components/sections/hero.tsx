@@ -6,19 +6,19 @@ import { Cormorant_Garamond, Cinzel } from "next/font/google"
 import { siteConfig } from "@/content/site"
 
 const desktopImages: string[] = [
-  '/desktop-background/couple (12).webp',
-  '/desktop-background/couple (9).webp',
-  '/desktop-background/couple (5).webp',
+  '/desktop-background/couple (1).webp',
+  '/desktop-background/couple (2).webp',
+  '/desktop-background/couple (3).webp',
   '/desktop-background/couple (4).webp',
-  '/desktop-background/couple (7).webp',
+  '/desktop-background/couple (5).webp',
 ];
 
 const mobileImages: string[] = [
   '/mobile-background/couple (1).webp',
   '/mobile-background/couple (2).webp',
   '/mobile-background/couple (3).webp',
-  '/mobile-background/couple (4).webp',
-  '/mobile-background/couple (5).webp',
+  '/mobile-background/couple (1).webp',
+  '/mobile-background/couple (2).webp',
 ];
 
 const SHOW_BUTTERFLIES = false
@@ -109,7 +109,7 @@ export function Hero() {
     : "THU"
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#51080F]">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0C1230]">
       <div className="absolute inset-0 w-full h-full">
         {imagesLoaded && backgroundImages.map((image, index) => (
           <div
@@ -126,10 +126,10 @@ export function Hero() {
             }}
           />
         ))}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#738A6E]/90 via-[#738A6E]/70 to-transparent z-0" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#738A6E]/75 z-0" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(115,138,110,0.3),transparent_55%)] mix-blend-screen" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(115,138,110,0.28),transparent_35%)] opacity-70 animate-[pulse_9s_ease-in-out_infinite]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1D2A73]/90 via-[#1D2A73]/70 to-transparent z-0" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#1D2A73]/75 z-0" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(29,42,115,0.3),transparent_55%)] mix-blend-screen" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(29,42,115,0.28),transparent_35%)] opacity-70 animate-[pulse_9s_ease-in-out_infinite]" />
       </div>
 
       {SHOW_BUTTERFLIES && (
@@ -489,7 +489,7 @@ export function Hero() {
             >
               <span
                 className={`${cinzel.className} text-[0.65rem] sm:text-xs md:text-sm uppercase tracking-[0.4em] sm:tracking-[0.5em] font-light text-white`}
-                style={{ textShadow: "0 2px 14px rgba(81,8,15,0.65)" }}
+                style={{ textShadow: "0 2px 14px rgba(12,18,48,0.65)" }}
               >
                 {weddingMonth}
               </span>
@@ -500,7 +500,7 @@ export function Hero() {
                   <span className="h-[0.5px] flex-1 bg-[#EDE1D3]/45" />
                   <span
                     className={`${cinzel.className} text-[0.6rem] sm:text-[0.7rem] md:text-xs uppercase tracking-[0.3em] sm:tracking-[0.4em] font-light text-white`}
-                    style={{ textShadow: "0 2px 14px rgba(81,8,15,0.65)" }}
+                    style={{ textShadow: "0 2px 14px rgba(12,18,48,0.65)" }}
                   >
                     {ceremonyDayShort}
                   </span>
@@ -529,7 +529,7 @@ export function Hero() {
                   <span className="h-[0.5px] w-6 sm:w-8 md:w-10 bg-[#EDE1D3]/45" />
                   <span
                     className={`${cinzel.className} text-[0.6rem] sm:text-[0.7rem] md:text-xs uppercase tracking-[0.3em] sm:tracking-[0.4em] font-light text-white`}
-                    style={{ textShadow: "0 2px 14px rgba(81,8,15,0.65)" }}
+                    style={{ textShadow: "0 2px 14px rgba(12,18,48,0.65)" }}
                   >
                     {ceremonyTime.split(",")[0]}
                   </span>
@@ -539,7 +539,7 @@ export function Hero() {
 
               <span
                 className={`${cinzel.className} text-[0.65rem] sm:text-xs md:text-sm uppercase tracking-[0.4em] sm:tracking-[0.5em] font-light text-white`}
-                style={{ textShadow: "0 2px 14px rgba(81,8,15,0.65)" }}
+                style={{ textShadow: "0 2px 14px rgba(12,18,48,0.65)" }}
               >
                 {weddingYear}
               </span>
@@ -573,21 +573,21 @@ export function Hero() {
             <div className="w-full flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch">
             <a
               href="#guest-list"
-              className={`${cormorant.className} group relative flex-1 sm:min-w-[200px] md:min-w-[220px] rounded-lg overflow-hidden transition-all duration-300 hover:-translate-y-1 focus-visible:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#324D3E]/70`}
+              className={`${cormorant.className} group relative flex-1 sm:min-w-[200px] md:min-w-[220px] rounded-lg overflow-hidden transition-all duration-300 hover:-translate-y-1 focus-visible:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFD83F]/70`}
               style={{
-                backgroundColor: "#324D3E",
-                boxShadow: "0 10px 24px rgba(50,77,62,0.4)",
+                backgroundColor: "#FFD83F",
+                boxShadow: "0 10px 24px rgba(255,216,63,0.4)",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "#2a4035";
-                e.currentTarget.style.boxShadow = "0 12px 28px rgba(50,77,62,0.5)";
+                e.currentTarget.style.backgroundColor = "#FFE066";
+                e.currentTarget.style.boxShadow = "0 12px 28px rgba(255,216,63,0.5)";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "#324D3E";
-                e.currentTarget.style.boxShadow = "0 10px 24px rgba(50,77,62,0.4)";
+                e.currentTarget.style.backgroundColor = "#FFD83F";
+                e.currentTarget.style.boxShadow = "0 10px 24px rgba(255,216,63,0.4)";
               }}
             >
-              <span className="relative z-10 inline-flex h-full min-h-[3rem] sm:min-h-[3.25rem] w-full items-center justify-center px-6 sm:px-8 text-[0.65rem] sm:text-[0.7rem] md:text-xs uppercase tracking-[0.32em] sm:tracking-[0.36em] text-[#F5D4CF] font-semibold transition-all duration-300" style={{ textShadow: "0 1px 6px rgba(0,0,0,0.2)" }}>
+              <span className="relative z-10 inline-flex h-full min-h-[3rem] sm:min-h-[3.25rem] w-full items-center justify-center px-6 sm:px-8 text-[0.65rem] sm:text-[0.7rem] md:text-xs uppercase tracking-[0.32em] sm:tracking-[0.36em] text-[#0C1230] font-semibold transition-all duration-300" style={{ textShadow: "0 1px 6px rgba(0,0,0,0.2)" }}>
                 Confirm Attendance
               </span>
             </a>

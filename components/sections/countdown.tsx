@@ -46,7 +46,7 @@ function CountdownUnit({ value, label }: CountdownUnitProps) {
               fontSize={26}
               padding={4}
               gap={2}
-              textColor="#FFFFFF"
+              textColor="#FFD83F"
               fontWeight={800}
               borderRadius={6}
               horizontalPadding={3}
@@ -59,7 +59,7 @@ function CountdownUnit({ value, label }: CountdownUnitProps) {
               digitStyle={{
                 minWidth: "1.15ch",
                 fontFamily: "Arial, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                color: "#FFFFFF",
+                color: "#FFD83F",
               }}
             />
           </div>
@@ -164,58 +164,6 @@ export function Countdown() {
       id="countdown"
       className="relative py-10 sm:py-12 md:py-16 lg:py-20 overflow-hidden"
     >
-      {/* Flower decoration - top left corner */}
-      <div className="absolute left-0 top-0 z-0 pointer-events-none">
-        <Image
-          src="/decoration/flower-decoration-left-bottom-corner2.png"
-          alt="Flower decoration"
-          width={300}
-          height={300}
-          className="w-auto h-auto max-w-[160px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-[280px] opacity-60 scale-y-[-1]"
-          priority={false}
-          style={{ filter: 'brightness(0) saturate(100%) invert(100%)' }}
-        />
-      </div>
-      
-      {/* Flower decoration - top right corner */}
-      <div className="absolute right-0 top-0 z-0 pointer-events-none">
-        <Image
-          src="/decoration/flower-decoration-left-bottom-corner2.png"
-          alt="Flower decoration"
-          width={300}
-          height={300}
-          className="w-auto h-auto max-w-[160px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-[280px] opacity-60 scale-x-[-1] scale-y-[-1]"
-          priority={false}
-          style={{ filter: 'brightness(0) saturate(100%) invert(100%)' }}
-        />
-      </div>
-      
-      {/* Flower decoration - left bottom corner */}
-      <div className="absolute left-0 bottom-0 z-0 pointer-events-none">
-        <Image
-          src="/decoration/flower-decoration-left-bottom-corner2.png"
-          alt="Flower decoration"
-          width={300}
-          height={300}
-          className="w-auto h-auto max-w-[160px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-[280px] opacity-60"
-          priority={false}
-          style={{ filter: 'brightness(0) saturate(100%) invert(100%)' }}
-        />
-      </div>
-      
-      {/* Flower decoration - right bottom corner */}
-      <div className="absolute right-0 bottom-0 z-0 pointer-events-none">
-        <Image
-          src="/decoration/flower-decoration-left-bottom-corner2.png"
-          alt="Flower decoration"
-          width={300}
-          height={300}
-          className="w-auto h-auto max-w-[160px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-[280px] opacity-60 scale-x-[-1]"
-          priority={false}
-          style={{ filter: 'brightness(0) saturate(100%) invert(100%)' }}
-        />
-      </div>
-      
       {/* Monogram - centered at top */}
       <div className="relative flex justify-center pt-8 sm:pt-10 md:pt-12 mb-6 sm:mb-8 md:mb-10 z-10">
         <motion.div
@@ -226,13 +174,10 @@ export function Countdown() {
         >
           <div className="relative w-72 h-72 sm:w-96 sm:h-96 md:w-[28rem] md:h-[28rem] lg:w-[36rem] lg:h-[36rem] xl:w-[40rem] xl:h-[40rem] opacity-90">
             <Image
-              src="/monogram/monogramnew.png"
+              src="/monogram/monogram-new.png"
               alt={`${groomNickname} & ${brideNickname} Monogram`}
               fill
               className="object-contain"
-              style={{
-                filter: "brightness(0) saturate(100%) invert(100%)",
-              }}
               priority={false}
             />
           </div>
@@ -314,7 +259,8 @@ export function Countdown() {
                     {/* Day number */}
                     <div className="relative flex items-center justify-center px-3 sm:px-4 md:px-5">
                       <span
-                        className={`${cinzel.className} relative text-[3rem] sm:text-[4.5rem] md:text-[5.5rem] lg:text-[6rem] font-bold leading-none tracking-wider text-white`}
+                        className={`${cinzel.className} relative text-[3rem] sm:text-[4.5rem] md:text-[5.5rem] lg:text-[6rem] font-bold leading-none tracking-wider`}
+                        style={{ color: '#FFD83F' }}
                       >
                         {ceremonyDayNumber.padStart(2, "0")}
                       </span>

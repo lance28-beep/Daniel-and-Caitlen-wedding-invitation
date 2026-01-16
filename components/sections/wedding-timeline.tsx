@@ -1,6 +1,7 @@
 "use client"
 
 import type React from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import { Section } from "@/components/section"
 import { siteConfig } from "@/content/site"
@@ -92,11 +93,63 @@ const timelineEvents: TimelineEvent[] = [
 ]
 
 export function WeddingTimeline() {
+  const [stars, setStars] = useState<Array<{ x: number; y: number; size: number; opacity: number }>>([])
+
+  // Generate star particles
+  useEffect(() => {
+    const starCount = 150;
+    const newStars = Array.from({ length: starCount }, () => {
+      const randomY = Math.random();
+      let y: number;
+      if (randomY < 0.6) {
+        y = Math.random() * 40;
+      } else if (randomY < 0.85) {
+        y = Math.random() * 40 + 40;
+      } else {
+        y = Math.random() * 20 + 80;
+      }
+      
+      return {
+        x: Math.random() * 100,
+        y: y,
+        size: Math.random() * 1 + 0.5,
+        opacity: Math.random() * 0.7 + 0.3,
+      };
+    });
+    setStars(newStars);
+  }, []);
+
   return (
     <Section
       id="wedding-timeline"
       className="relative py-8 sm:py-10 md:py-14 lg:py-18 overflow-hidden"
     >
+      {/* Background gradient */}
+      <div 
+        className="absolute inset-0 -z-10"
+        style={{
+          background: "linear-gradient(to bottom, #0C1230, #1D2A73, #163693)",
+        }}
+      />
+
+      {/* Star particles */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        {stars.map((star, index) => (
+          <div
+            key={index}
+            className="absolute rounded-full bg-white"
+            style={{
+              left: `${star.x}%`,
+              top: `${star.y}%`,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              opacity: star.opacity,
+              boxShadow: `0 0 ${star.size * 1.5}px rgba(255, 255, 255, ${star.opacity * 0.6})`,
+            }}
+          />
+        ))}
+      </div>
+
       {/* Header */}
       <div className="relative z-10 text-center mb-6 sm:mb-9 md:mb-12 px-3 sm:px-4">
         {/* Small label */}
@@ -116,24 +169,24 @@ export function WeddingTimeline() {
 
         {/* Simple divider */}
         <div className="flex items-center justify-center gap-2 mt-3 sm:mt-4">
-          <div className="w-8 sm:w-12 md:w-16 h-px bg-[#324D3E]/60" />
-          <div className="w-1.5 h-1.5 bg-[#324D3E]/80 rounded-full" />
-          <div className="w-1.5 h-1.5 bg-[#324D3E]/60 rounded-full" />
-          <div className="w-1.5 h-1.5 bg-[#324D3E]/80 rounded-full" />
-          <div className="w-8 sm:w-12 md:w-16 h-px bg-[#324D3E]/60" />
+          <div className="w-8 sm:w-12 md:w-16 h-px bg-[#1D2A73]/60" />
+          <div className="w-1.5 h-1.5 bg-[#1D2A73]/80 rounded-full" />
+          <div className="w-1.5 h-1.5 bg-[#1D2A73]/60 rounded-full" />
+          <div className="w-1.5 h-1.5 bg-[#1D2A73]/80 rounded-full" />
+          <div className="w-8 sm:w-12 md:w-16 h-px bg-[#1D2A73]/60" />
         </div>
       </div>
 
       {/* Timeline - improved desktop layout */}
       <div className="relative z-10 max-w-6xl mx-auto px-3 sm:px-5 lg:px-8">
         {/* Vertical timeline line - desktop (aligned with left icons) */}
-        <div className="hidden md:block absolute left-[4rem] md:left-[5rem] lg:left-[6rem] top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#324D3E]/40 via-[#324D3E]/55 to-[#324D3E]/40 pointer-events-none">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#324D3E]" />
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#324D3E]" />
+        <div className="hidden md:block absolute left-[4rem] md:left-[5rem] lg:left-[6rem] top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#1D2A73]/40 via-[#1D2A73]/55 to-[#1D2A73]/40 pointer-events-none">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#1D2A73]" />
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#1D2A73]" />
         </div>
 
         {/* Mobile timeline line */}
-        <div className="md:hidden absolute left-10 sm:left-11 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#324D3E]/45 via-[#324D3E]/60 to-[#324D3E]/45 pointer-events-none" />
+        <div className="md:hidden absolute left-10 sm:left-11 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#1D2A73]/45 via-[#1D2A73]/60 to-[#1D2A73]/45 pointer-events-none" />
 
         <div className="space-y-4 sm:space-y-5 md:space-y-8 lg:space-y-10">
           {timelineEvents.map((event, index) => (
@@ -186,7 +239,7 @@ function TimelineItem({ event, index }: { event: TimelineEvent; index: number })
 function TimelineCard({ event, Icon, mobile }: { event: TimelineEvent; Icon: TimelineIcon; mobile?: boolean }) {
   return (
     <div
-      className={`rounded-lg sm:rounded-xl border border-[#324D3E]/40 bg-[#D9E5D7] backdrop-blur-sm shadow-md hover:shadow-lg transition-all duration-300 ${
+      className={`rounded-lg sm:rounded-xl border border-[#1D2A73]/40 bg-white backdrop-blur-sm shadow-md hover:shadow-lg transition-all duration-300 ${
         mobile ? "p-3" : "p-4 sm:p-5 md:p-6 lg:p-7"
       } max-w-md`}
     >
@@ -194,10 +247,10 @@ function TimelineCard({ event, Icon, mobile }: { event: TimelineEvent; Icon: Tim
         {/* Time */}
         <div className="flex items-center gap-1.5">
           <Clock
-            className={`${mobile ? "w-3.5 h-3.5" : "w-4 h-4 md:w-5 md:h-5"} text-[#324D3E] flex-shrink-0`}
+            className={`${mobile ? "w-3.5 h-3.5" : "w-4 h-4 md:w-5 md:h-5"} text-[#1D2A73] flex-shrink-0`}
           />
           <p
-            className={`${mobile ? "text-[10px]" : "text-xs sm:text-sm md:text-base"} font-bold tracking-[0.15em] text-[#324D3E] uppercase`}
+            className={`${mobile ? "text-[10px]" : "text-xs sm:text-sm md:text-base"} font-bold tracking-[0.15em] text-[#1D2A73] uppercase`}
           >
             {event.time}
           </p>
@@ -205,7 +258,7 @@ function TimelineCard({ event, Icon, mobile }: { event: TimelineEvent; Icon: Tim
 
         {/* Title */}
         <h3
-          className={`${mobile ? "text-sm sm:text-base" : "text-base sm:text-lg md:text-xl lg:text-2xl"} font-semibold text-[#324D3E] leading-tight`}
+          className={`${mobile ? "text-sm sm:text-base" : "text-base sm:text-lg md:text-xl lg:text-2xl"} font-semibold text-[#1D2A73] leading-tight`}
         >
           {event.title}
         </h3>
@@ -213,7 +266,7 @@ function TimelineCard({ event, Icon, mobile }: { event: TimelineEvent; Icon: Tim
         {/* Description */}
         {event.description && (
           <p
-            className={`${mobile ? "text-[10px] sm:text-xs" : "text-xs sm:text-sm md:text-base"} text-[#324D3E]/90 leading-relaxed`}
+            className={`${mobile ? "text-[10px] sm:text-xs" : "text-xs sm:text-sm md:text-base"} text-[#1D2A73]/90 leading-relaxed`}
           >
             {event.description}
           </p>
@@ -224,12 +277,12 @@ function TimelineCard({ event, Icon, mobile }: { event: TimelineEvent; Icon: Tim
           <div
             className={`flex items-start gap-1.5 ${
               mobile ? "pt-1.5" : "pt-2 md:pt-3"
-            } border-t border-[#324D3E]/40`}
+            } border-t border-[#1D2A73]/40`}
           >
             <MapPin
-              className={`${mobile ? "w-3 h-3" : "w-3.5 h-3.5 md:w-4 md:h-4"} text-[#324D3E] mt-0.5 flex-shrink-0`}
+              className={`${mobile ? "w-3 h-3" : "w-3.5 h-3.5 md:w-4 md:h-4"} text-[#1D2A73] mt-0.5 flex-shrink-0`}
             />
-            <p className={`${mobile ? "text-[10px]" : "text-xs md:text-sm"} text-[#324D3E]/90 leading-relaxed`}>
+            <p className={`${mobile ? "text-[10px]" : "text-xs md:text-sm"} text-[#1D2A73]/90 leading-relaxed`}>
               {event.location}
             </p>
           </div>
@@ -266,12 +319,12 @@ function IconBadge({
     <div
       className={`${
         mobile ? "w-10 h-10" : "w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20"
-      } rounded-full border-2 border-[#324D3E]/70 bg-white flex items-center justify-center shadow-md hover:scale-105 transition-transform duration-300`}
+      } rounded-full border-2 border-[#1D2A73]/70 bg-white flex items-center justify-center shadow-md hover:scale-105 transition-transform duration-300`}
     >
       <Icon
         className={`${
           mobile ? "w-5 h-5" : "w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8"
-        } text-[#324D3E]`}
+        } text-[#1D2A73]`}
       />
     </div>
   )
@@ -279,7 +332,7 @@ function IconBadge({
 
 /* Hand-drawn–style timeline icons */
 
-const iconStroke = "#324D3E"
+const iconStroke = "#1D2A73"
 
 function GuestsIcon(props: React.SVGProps<SVGSVGElement>) {
   return (

@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { siteConfig } from '@/content/site';
+import { Cormorant_Garamond } from 'next/font/google';
+
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['400'],
+});
 
 interface LoadingScreenProps {
   onComplete: () => void;
@@ -9,6 +15,35 @@ interface LoadingScreenProps {
 export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
   const [fadeOut, setFadeOut] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [stars, setStars] = useState<Array<{ x: number; y: number; size: number; opacity: number }>>([]);
+
+  useEffect(() => {
+    // Generate stars distributed across the screen, with more at the top
+    const starCount = 150;
+    const newStars = Array.from({ length: starCount }, () => {
+      // More stars at the top, fewer at the bottom
+      const randomY = Math.random();
+      let y: number;
+      if (randomY < 0.6) {
+        // 60% of stars in top 40% of screen
+        y = Math.random() * 40;
+      } else if (randomY < 0.85) {
+        // 25% of stars in middle 40% of screen
+        y = Math.random() * 40 + 40;
+      } else {
+        // 15% of stars in bottom 20% of screen
+        y = Math.random() * 20 + 80;
+      }
+      
+      return {
+        x: Math.random() * 100, // 0-100% of width
+        y: y, // Distributed across screen
+        size: Math.random() * 1 + 0.5, // 0.5-1.5px (smaller)
+        opacity: Math.random() * 0.7 + 0.3, // 0.3-1.0 (more variation)
+      };
+    });
+    setStars(newStars);
+  }, []);
 
   useEffect(() => {
     // Update progress smoothly
@@ -44,52 +79,26 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
       <div 
         className="absolute inset-0"
         style={{
-          background: 'linear-gradient(to bottom, #8EA58B, #BCCFC0)'
+          background: 'linear-gradient(to bottom, #0C1230, #1D2A73, #163693)'
         }}
       />
 
-      {/* Corner floral decoration */}
+      {/* Star particles */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Top left */}
-        <Image
-          src="/decoration/flower-decoration-left-bottom-corner2.png"
-          alt="Floral decoration top left"
-          width={300}
-          height={300}
-          className="absolute top-0 left-0 w-auto h-auto max-w-[160px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-[280px] opacity-60"
-          style={{ transform: 'scaleY(-1)', filter: 'brightness(0) saturate(100%) invert(20%) sepia(15%) saturate(800%) hue-rotate(140deg) brightness(95%) contrast(90%)' }}
-          priority={false}
-        />
-        {/* Top right */}
-        <Image
-          src="/decoration/flower-decoration-left-bottom-corner2.png"
-          alt="Floral decoration top right"
-          width={300}
-          height={300}
-          className="absolute top-0 right-0 w-auto h-auto max-w-[160px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-[280px] opacity-60"
-          style={{ transform: 'scaleX(-1) scaleY(-1)', filter: 'brightness(0) saturate(100%) invert(20%) sepia(15%) saturate(800%) hue-rotate(140deg) brightness(95%) contrast(90%)' }}
-          priority={false}
-        />
-        {/* Bottom left */}
-        <Image
-          src="/decoration/flower-decoration-left-bottom-corner2.png"
-          alt="Floral decoration bottom left"
-          width={300}
-          height={300}
-          className="absolute bottom-0 left-0 w-auto h-auto max-w-[160px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-[280px] opacity-60"
-          style={{ filter: 'brightness(0) saturate(100%) invert(20%) sepia(15%) saturate(800%) hue-rotate(140deg) brightness(95%) contrast(90%)' }}
-          priority={false}
-        />
-        {/* Bottom right */}
-        <Image
-          src="/decoration/flower-decoration-left-bottom-corner2.png"
-          alt="Floral decoration bottom right"
-          width={300}
-          height={300}
-          className="absolute bottom-0 right-0 w-auto h-auto max-w-[160px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-[280px] opacity-60"
-          style={{ transform: 'scaleX(-1)', filter: 'brightness(0) saturate(100%) invert(20%) sepia(15%) saturate(800%) hue-rotate(140deg) brightness(95%) contrast(90%)' }}
-          priority={false}
-        />
+        {stars.map((star, index) => (
+          <div
+            key={index}
+            className="absolute rounded-full bg-white"
+            style={{
+              left: `${star.x}%`,
+              top: `${star.y}%`,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              opacity: star.opacity,
+              boxShadow: `0 0 ${star.size * 1.5}px rgba(255, 255, 255, ${star.opacity * 0.6})`,
+            }}
+          />
+        ))}
       </div>
 
       <div className="relative flex flex-col items-center justify-center w-full px-8 sm:px-12 md:px-16">
@@ -97,12 +106,11 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
         <div className="relative flex items-center justify-center mb-8 sm:mb-12">
           <div className="relative w-28 sm:w-40 h-28 sm:h-40">
             <Image
-              src="/monogram/monogramnew.png"
+              src="/monogram/monogram-new.png"
               alt="Monogram"
               fill
               className="object-contain"
               priority
-              style={{ filter: 'brightness(0) saturate(100%) invert(100%)' }}
             />
           </div>
         </div>
@@ -111,27 +119,31 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
         <div className="text-center w-full max-w-sm sm:max-w-2xl mx-auto px-6 sm:px-8 md:px-12">
           {/* Couple names */}
           <div
-            className="text-4xl sm:text-6xl md:text-7xl mb-6 sm:mb-8 leading-tight"
-            style={{ fontFamily: '"Style Script", cursive', fontWeight: 400, fontStyle: 'normal', color: '#FFFFFF' }}
+            className={`${cormorant.className} text-4xl sm:text-6xl md:text-7xl mb-4 sm:mb-6 leading-tight`}
+            style={{ fontWeight: 400 }}
           >
-            <div>{siteConfig.couple.groomNickname}</div>
-            <div>&</div>
-            <div>{siteConfig.couple.brideNickname}</div>
+            <div style={{ color: '#FFFFFF' }}>{siteConfig.couple.groomNickname}</div>
+            <div style={{ color: '#FFFFFF' }}>&</div>
+            <div style={{ color: '#FFD83F' }}>{siteConfig.couple.brideNickname}</div>
+          </div>
+
+          {/* Wedding date */}
+          <div className="mb-6 sm:mb-8">
+            <p
+              className={`${cormorant.className} text-lg sm:text-xl md:text-2xl`}
+              style={{ color: '#FFFFFF', fontWeight: 400 }}
+            >
+              {siteConfig.wedding.date}
+            </p>
           </div>
 
           {/* Message */}
-          <div className="space-y-4 sm:space-y-5 mb-6 sm:mb-8">
+          <div className="mb-6 sm:mb-8">
             <p
-              className="text-base sm:text-lg leading-relaxed sm:leading-loose tracking-wide"
-              style={{ fontFamily: '"Style Script", cursive', fontWeight: 400, color: '#FFFFFF' }}
+              className="text-base sm:text-lg tracking-wide"
+              style={{ fontFamily: 'var(--font-inter), "Helvetica Neue", "Arial", sans-serif', fontWeight: 300, color: '#FFFFFF', letterSpacing: '0.1em' }}
             >
-              Behind the scenes, something beautiful is gently coming together—woven with love, dreams, and shared moments. This space is being shaped with care, patience, and heartfelt intention.
-            </p>
-            <p
-              className="text-base sm:text-lg leading-relaxed sm:leading-loose tracking-wide"
-              style={{ fontFamily: '"Style Script", cursive', fontWeight: 400, color: '#FFFFFF' }}
-            >
-              Please hold on for just a moment as we reveal something special, made not just to be seen, but to be felt.
+              Preparing something beautiful for you
             </p>
           </div>
 
@@ -146,7 +158,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
           {/* Progress percentage */}
           <p
             className="text-[9px] sm:text-[10px] tracking-[0.2em]"
-            style={{ fontFamily: '"Style Script", cursive', fontWeight: 400, color: '#FFFFFF' }}
+            style={{ fontFamily: 'var(--font-inter), "Helvetica Neue", "Arial", sans-serif', fontWeight: 300, color: '#FFFFFF' }}
           >
             {progress}%
           </p>

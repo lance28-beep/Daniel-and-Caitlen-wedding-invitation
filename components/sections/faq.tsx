@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { ChevronDown } from "lucide-react"
 import { Section } from "@/components/section"
 import { Cormorant_Garamond } from "next/font/google"
@@ -81,6 +81,31 @@ const faqItems: FAQItem[] = [
 
 export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const [stars, setStars] = useState<Array<{ x: number; y: number; size: number; opacity: number }>>([])
+
+  // Generate star particles
+  useEffect(() => {
+    const starCount = 150;
+    const newStars = Array.from({ length: starCount }, () => {
+      const randomY = Math.random();
+      let y: number;
+      if (randomY < 0.6) {
+        y = Math.random() * 40;
+      } else if (randomY < 0.85) {
+        y = Math.random() * 40 + 40;
+      } else {
+        y = Math.random() * 20 + 80;
+      }
+      
+      return {
+        x: Math.random() * 100,
+        y: y,
+        size: Math.random() * 1 + 0.5,
+        opacity: Math.random() * 0.7 + 0.3,
+      };
+    });
+    setStars(newStars);
+  }, []);
 
   const toggleItem = (index: number) => {
     setOpenIndex(openIndex === index ? null : index)
@@ -91,6 +116,32 @@ export function FAQ() {
       id="faq"
       className="relative py-12 md:py-16 lg:py-20 overflow-hidden"
     >
+      {/* Background gradient */}
+      <div 
+        className="absolute inset-0 -z-10"
+        style={{
+          background: "linear-gradient(to bottom, #0C1230, #1D2A73, #163693)",
+        }}
+      />
+
+      {/* Star particles */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        {stars.map((star, index) => (
+          <div
+            key={index}
+            className="absolute rounded-full bg-white"
+            style={{
+              left: `${star.x}%`,
+              top: `${star.y}%`,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              opacity: star.opacity,
+              boxShadow: `0 0 ${star.size * 1.5}px rgba(255, 255, 255, ${star.opacity * 0.6})`,
+            }}
+          />
+        ))}
+      </div>
+
       {/* Section Header */}
       <div className="relative z-30 text-center mb-6 sm:mb-9 md:mb-12 px-3 sm:px-4">
         {/* Small label */}
@@ -123,7 +174,7 @@ export function FAQ() {
       {/* FAQ content */}
       <div className="relative z-30 max-w-4xl mx-auto px-3 sm:px-5">
         {/* Main card */}
-        <div className="relative bg-[#BCCFC0]/95 backdrop-blur-md border border-[#324D3E]/40 rounded-lg sm:rounded-xl md:rounded-2xl shadow-[0_20px_60px_rgba(50,77,62,0.15)] overflow-hidden">
+        <div className="relative bg-white/95 backdrop-blur-md border border-[#1D2A73]/40 rounded-lg sm:rounded-xl md:rounded-2xl shadow-[0_20px_60px_rgba(29,42,115,0.15)] overflow-hidden">
           
           {/* FAQ items */}
           <div className="relative p-2.5 sm:p-4 md:p-5 lg:p-6">
@@ -134,20 +185,20 @@ export function FAQ() {
                 return (
                   <div
                     key={index}
-                    className="rounded-lg sm:rounded-xl border border-[#324D3E]/40 bg-white/80 hover:border-[#324D3E]/60 hover:bg-white transition-all duration-300 overflow-hidden shadow-sm"
+                    className="rounded-lg sm:rounded-xl border border-[#1D2A73]/40 bg-white hover:border-[#1D2A73]/60 hover:bg-white transition-all duration-300 overflow-hidden shadow-sm"
                   >
                     <button
                       onClick={() => toggleItem(index)}
-                      className="group w-full px-2.5 sm:px-3 md:px-4 lg:px-5 py-2 sm:py-2.5 md:py-3 lg:py-4 flex items-center justify-between text-left outline-none focus-visible:ring-2 focus-visible:ring-[#324D3E]/50 focus-visible:ring-offset-2 transition-colors"
+                      className="group w-full px-2.5 sm:px-3 md:px-4 lg:px-5 py-2 sm:py-2.5 md:py-3 lg:py-4 flex items-center justify-between text-left outline-none focus-visible:ring-2 focus-visible:ring-[#1D2A73]/50 focus-visible:ring-offset-2 transition-colors"
                       aria-expanded={isOpen}
                       aria-controls={contentId}
                     >
-                      <span className={`${cormorant.className} font-semibold text-[#324D3E] pr-2 sm:pr-3 md:pr-4 text-xs sm:text-sm md:text-base lg:text-lg leading-snug sm:leading-relaxed transition-colors duration-200 group-hover:text-[#324D3E]`}>
+                      <span className={`${cormorant.className} font-semibold text-[#1D2A73] pr-2 sm:pr-3 md:pr-4 text-xs sm:text-sm md:text-base lg:text-lg leading-snug sm:leading-relaxed transition-colors duration-200 group-hover:text-[#1D2A73]`}>
                         {item.question}
                       </span>
                       <ChevronDown
                         size={18}
-                        className={`text-[#324D3E]/60 flex-shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180 text-[#324D3E]" : ""} w-4 h-4 sm:w-5 sm:h-5`}
+                        className={`text-[#1D2A73]/60 flex-shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180 text-[#1D2A73]" : ""} w-4 h-4 sm:w-5 sm:h-5`}
                         aria-hidden
                       />
                     </button>
@@ -160,13 +211,13 @@ export function FAQ() {
                       }`}
                     >
                       <div className="overflow-hidden">
-                        <div className="px-2.5 sm:px-3 md:px-4 lg:px-5 py-2 sm:py-2.5 md:py-3 lg:py-4 bg-white/50 border-t border-[#324D3E]/40">
+                        <div className="px-2.5 sm:px-3 md:px-4 lg:px-5 py-2 sm:py-2.5 md:py-3 lg:py-4 bg-white border-t border-[#1D2A73]/40">
                           {item.answer.includes("[RSVP_LINK]") ? (
-                            <p className={`${cormorant.className} text-[#324D3E] font-medium leading-relaxed sm:leading-loose text-xs sm:text-sm md:text-base lg:text-lg whitespace-pre-line tracking-wide`}>
+                            <p className={`${cormorant.className} text-[#1D2A73] font-medium leading-relaxed sm:leading-loose text-xs sm:text-sm md:text-base lg:text-lg whitespace-pre-line tracking-wide`}>
                               {item.answer.split("[RSVP_LINK]")[0]}
                               <a 
                                 href="#guest-list" 
-                                className="text-[#324D3E] underline font-bold hover:text-[#324D3E]/80 transition-colors"
+                                className="text-[#1D2A73] underline font-bold hover:text-[#1D2A73]/80 transition-colors"
                                 onClick={(e) => {
                                   e.preventDefault()
                                   document.getElementById('guest-list')?.scrollIntoView({ behavior: 'smooth' })
@@ -177,7 +228,7 @@ export function FAQ() {
                               {item.answer.split("[/RSVP_LINK]")[1]}
                             </p>
                           ) : (
-                            <p className={`${cormorant.className} text-[#324D3E] font-medium leading-relaxed sm:leading-loose text-xs sm:text-sm md:text-base lg:text-lg whitespace-pre-line tracking-wide`}>
+                            <p className={`${cormorant.className} text-[#1D2A73] font-medium leading-relaxed sm:leading-loose text-xs sm:text-sm md:text-base lg:text-lg whitespace-pre-line tracking-wide`}>
                               {item.answer}
                             </p>
                           )}

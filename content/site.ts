@@ -6,8 +6,8 @@ export const siteConfig = {
     groomNickname: "Daniel",
   },
   wedding: {
-    date: "JUNE 2, 2025",
-    time: "12:30 PM",
+    date: "JUNE 2, 2026",
+    time: "1:30 PM",
     venue: "The Archdiocesan Shrine of the Most Sacred Heart of Jesus",
     tagline: "are getting married!",
     theme: "Modern Filipiniana",
@@ -21,16 +21,16 @@ export const siteConfig = {
   ceremony: {
     location: "The Archdiocesan Shrine of the Most Sacred Heart of Jesus",
     venue: "The Archdiocesan Shrine of the Most Sacred Heart of Jesus",
-    date: "June 2 2025",
-    day: "Monday",
-    time: "12:30 PM",
+    date: "June 2 2026",
+    day: "Tuesday",
+    time: "1:30 PM",
     entourageTime: "12:00 PM",
     guestsTime: "12:00 PM",
   },
   reception: {
     location: "Dusit Thani Mactan Cebu, Ballroom 1",
     venue: "Dusit Thani Mactan Cebu, Ballroom 1",
-    date: "June 2, 2025",
+    date: "June 2, 2026",
     time: "To be announced",
   },
   dressCode: {
@@ -63,8 +63,8 @@ Now, as they prepare to say yes before God and the people they love most, Cather
     secondary: "#F5F5DC",
   },
   snapShare: {
-    googleDriveLink: "https://drive.google.com/drive/folders/1lk45T1tGmm5_Oa48ABV_Cgrnpp1T2kTk?usp=sharing",
-    hashtag: "#anJOHNnaforeverniVANESSA",
+    googleDriveLink: "https://drive.google.com/drive/folders/11-Ylo2X9bBWGzRvEwP-8twU6sxNP2xPh?usp=sharing",
+    hashtag: "#DanielAndCaitlen",
     instructions: "Please scan this QR Code, create a folder with your name and upload the photos and videos you have taken during our wedding reception. We are delighted to see your snaps too!",
   },
 }

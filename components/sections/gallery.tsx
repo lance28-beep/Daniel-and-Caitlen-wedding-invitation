@@ -26,8 +26,8 @@ const galleryItems = [
   { image: "/mobile-background/couple (1).webp", text: " " },
   { image: "/mobile-background/couple (2).webp", text: " " },
   { image: "/mobile-background/couple (3).webp", text: " " },
-  { image: "/mobile-background/couple (4).webp", text: " " },
-  { image: "/mobile-background/couple (5).webp", text: " " },
+  { image: "/desktop-background/couple (4).webp", text: " " },
+  { image: "/desktop-background/couple (5).webp", text: " " },
   { image: "/desktop-background/couple (7).webp", text: " " },
 
 ]
@@ -38,6 +38,7 @@ export function Gallery() {
   const [selectedImage, setSelectedImage] = useState<(typeof galleryItems)[0] | null>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
+  const [stars, setStars] = useState<Array<{ x: number; y: number; size: number; opacity: number }>>([])
   // reserved for potential skeleton tracking; not used after fade-in simplification
   const [touchStartX, setTouchStartX] = useState<number | null>(null)
   const [touchDeltaX, setTouchDeltaX] = useState(0)
@@ -47,6 +48,34 @@ export function Gallery() {
   const [pinchStartScale, setPinchStartScale] = useState(1)
   const [lastTap, setLastTap] = useState(0)
   const [panStart, setPanStart] = useState<{ x: number; y: number; panX: number; panY: number } | null>(null)
+
+  useEffect(() => {
+    // Generate stars distributed across the screen, with more at the top
+    const starCount = 150;
+    const newStars = Array.from({ length: starCount }, () => {
+      // More stars at the top, fewer at the bottom
+      const randomY = Math.random();
+      let y: number;
+      if (randomY < 0.6) {
+        // 60% of stars in top 40% of screen
+        y = Math.random() * 40;
+      } else if (randomY < 0.85) {
+        // 25% of stars in middle 40% of screen
+        y = Math.random() * 40 + 40;
+      } else {
+        // 15% of stars in bottom 20% of screen
+        y = Math.random() * 20 + 80;
+      }
+      
+      return {
+        x: Math.random() * 100, // 0-100% of width
+        y: y, // Distributed across screen
+        size: Math.random() * 1 + 0.5, // 0.5-1.5px (smaller)
+        opacity: Math.random() * 0.7 + 0.3, // 0.3-1.0 (more variation)
+      };
+    });
+    setStars(newStars);
+  }, []);
 
   useEffect(() => {
     // Simulate loading for better UX
@@ -119,60 +148,26 @@ export function Gallery() {
       <div 
         className="absolute inset-0 -z-10"
         style={{
-          background: "linear-gradient(to bottom, #8EA58B, #BCCFC0)",
+          background: "linear-gradient(to bottom, #0C1230, #1D2A73, #163693)",
         }}
       />
-      
-      {/* Flower decoration - top left corner */}
-      <div className="absolute left-0 top-0 z-0 pointer-events-none">
-        <Image
-          src="/decoration/flower-decoration-left-bottom-corner2.png"
-          alt="Flower decoration"
-          width={300}
-          height={300}
-          className="w-auto h-auto max-w-[160px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-[280px] opacity-60 scale-y-[-1]"
-          priority={false}
-          style={{ filter: 'brightness(0) saturate(100%) invert(20%) sepia(15%) saturate(800%) hue-rotate(140deg) brightness(95%) contrast(90%)' }}
-        />
-      </div>
-      
-      {/* Flower decoration - top right corner */}
-      <div className="absolute right-0 top-0 z-0 pointer-events-none">
-        <Image
-          src="/decoration/flower-decoration-left-bottom-corner2.png"
-          alt="Flower decoration"
-          width={300}
-          height={300}
-          className="w-auto h-auto max-w-[160px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-[280px] opacity-60 scale-x-[-1] scale-y-[-1]"
-          priority={false}
-          style={{ filter: 'brightness(0) saturate(100%) invert(20%) sepia(15%) saturate(800%) hue-rotate(140deg) brightness(95%) contrast(90%)' }}
-        />
-      </div>
-      
-      {/* Flower decoration - left bottom corner */}
-      <div className="absolute left-0 bottom-0 z-0 pointer-events-none">
-        <Image
-          src="/decoration/flower-decoration-left-bottom-corner2.png"
-          alt="Flower decoration"
-          width={300}
-          height={300}
-          className="w-auto h-auto max-w-[160px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-[280px] opacity-60"
-          priority={false}
-          style={{ filter: 'brightness(0) saturate(100%) invert(20%) sepia(15%) saturate(800%) hue-rotate(140deg) brightness(95%) contrast(90%)' }}
-        />
-      </div>
-      
-      {/* Flower decoration - right bottom corner */}
-      <div className="absolute right-0 bottom-0 z-0 pointer-events-none">
-        <Image
-          src="/decoration/flower-decoration-left-bottom-corner2.png"
-          alt="Flower decoration"
-          width={300}
-          height={300}
-          className="w-auto h-auto max-w-[160px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-[280px] opacity-60 scale-x-[-1]"
-          priority={false}
-          style={{ filter: 'brightness(0) saturate(100%) invert(20%) sepia(15%) saturate(800%) hue-rotate(140deg) brightness(95%) contrast(90%)' }}
-        />
+
+      {/* Star particles */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        {stars.map((star, index) => (
+          <div
+            key={index}
+            className="absolute rounded-full bg-white"
+            style={{
+              left: `${star.x}%`,
+              top: `${star.y}%`,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              opacity: star.opacity,
+              boxShadow: `0 0 ${star.size * 1.5}px rgba(255, 255, 255, ${star.opacity * 0.6})`,
+            }}
+          />
+        ))}
       </div>
 
       {/* Header */}
@@ -442,10 +437,10 @@ export function Gallery() {
           href="/gallery"
           className="group inline-flex items-center gap-2 px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-3.5 md:py-4 rounded-lg sm:rounded-xl font-semibold sm:font-bold transition-all duration-300 uppercase tracking-wider text-xs sm:text-sm md:text-base whitespace-nowrap relative overflow-hidden border-2 backdrop-blur-sm"
           style={{
-            backgroundColor: "#324D3E",
-            borderColor: "#324D3E",
-            color: "#D9E5D7",
-            boxShadow: "0 6px 26px rgba(50,77,62,0.45), 0 2px 10px rgba(50,77,62,0.6)",
+            backgroundColor: "#FFD83F",
+            borderColor: "#FFD83F",
+            color: "#0C1230",
+            boxShadow: "0 6px 26px rgba(255,216,63,0.45), 0 2px 10px rgba(255,216,63,0.6)",
           }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -454,14 +449,14 @@ export function Gallery() {
           whileHover={{ scale: 1.05, y: -2 }}
           whileTap={{ scale: 0.98 }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = "#2a4035";
-            e.currentTarget.style.borderColor = "#2a4035";
-            e.currentTarget.style.boxShadow = "0 10px 34px rgba(50,77,62,0.55), 0 4px 14px rgba(50,77,62,0.8)";
+            e.currentTarget.style.backgroundColor = "#FFE066";
+            e.currentTarget.style.borderColor = "#FFE066";
+            e.currentTarget.style.boxShadow = "0 10px 34px rgba(255,216,63,0.55), 0 4px 14px rgba(255,216,63,0.8)";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = "#324D3E";
-            e.currentTarget.style.borderColor = "#324D3E";
-            e.currentTarget.style.boxShadow = "0 6px 26px rgba(50,77,62,0.45), 0 2px 10px rgba(50,77,62,0.6)";
+            e.currentTarget.style.backgroundColor = "#FFD83F";
+            e.currentTarget.style.borderColor = "#FFD83F";
+            e.currentTarget.style.boxShadow = "0 6px 26px rgba(255,216,63,0.45), 0 2px 10px rgba(255,216,63,0.6)";
           }}
         >
           <span className="relative z-10">View Full Gallery</span>
@@ -475,14 +470,14 @@ export function Gallery() {
               ease: "easeInOut",
             }}
           >
-            <ChevronRight size={16} className="sm:w-5 sm:h-5 relative z-10 transition-transform duration-300 group-hover:translate-x-1" />
+            <ChevronRight size={16} className="sm:w-5 sm:h-5 relative z-10 transition-transform duration-300 group-hover:translate-x-1" style={{ color: '#0C1230' }} />
           </motion.div>
           <div 
-            className="absolute inset-0 bg-gradient-to-r from-transparent via-[#324D3E]/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 transform -skew-x-12 -translate-x-full group-hover:translate-x-full"
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-[#FFD83F]/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 transform -skew-x-12 -translate-x-full group-hover:translate-x-full"
           />
           {/* Pulsing glow effect */}
           <motion.div 
-            className="absolute inset-0 bg-[#324D3E]/25 rounded-lg sm:rounded-xl blur-xl -z-10"
+            className="absolute inset-0 bg-[#FFD83F]/25 rounded-lg sm:rounded-xl blur-xl -z-10"
             animate={{
               opacity: [0.3, 0.6, 0.3],
               scale: [1, 1.1, 1],

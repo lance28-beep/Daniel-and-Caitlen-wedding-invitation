@@ -7,8 +7,8 @@ import { siteConfig } from "@/content/site"
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://john-mark-and-vanessa-jean-invitati.vercel.app/"
 const canonicalUrl = siteUrl.replace(/\/$/, "")
-const desktopHero = "/Details/LinkPreview.jpg"
-const mobileHero = "/Details/LinkPreview.jpg"
+const desktopHero = "/Details/imageLink.jpg"
+const mobileHero = "/Details/imageLink.jpg"
 const eventImageUrl = `${canonicalUrl}${desktopHero}`
 
 const coupleNames = `${siteConfig.couple.groomNickname} & ${siteConfig.couple.brideNickname}`
@@ -19,8 +19,8 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Event",
   name: `${siteConfig.couple.groomNickname} & ${siteConfig.couple.brideNickname} Wedding`,
-  startDate: "2026-03-06T14:00:00+08:00",
-  endDate: "2026-03-06T22:00:00+08:00",
+  startDate: "2026-06-02T13:30:00+08:00",
+  endDate: "2026-06-02T22:00:00+08:00",
   eventStatus: "https://schema.org/EventScheduled",
   eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
   location: [
@@ -171,6 +171,7 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Lavishly+Yours&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Style+Script&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Arizonia&display=swap" rel="stylesheet" />
         <link rel="preload" as="image" href={mobileHero} media="(max-width: 767px)" />
         <link rel="preload" as="image" href={desktopHero} media="(min-width: 768px)" />
         <link rel="preload" as="image" href="/Details/St. Augustine Parish Church.jpg" />
