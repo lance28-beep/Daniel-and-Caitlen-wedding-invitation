@@ -15,7 +15,7 @@ export const siteConfig = {
   },
   details: {
     rsvp: {
-      deadline: "January 31, 2026",
+      deadline: "May 2, 2026",
     },
   },
   ceremony: {
@@ -25,7 +25,7 @@ export const siteConfig = {
     day: "Tuesday",
     time: "1:30 PM",
     entourageTime: "12:00 PM",
-    guestsTime: "12:00 PM",
+    guestsTime: "12:30 PM",
   },
   reception: {
     location: "Dusit Thani Mactan Cebu",

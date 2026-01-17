@@ -1,7 +1,6 @@
 "use client"
 
 import { Section } from "@/components/section"
-import { siteConfig } from "@/content/site"
 import { Car, Navigation, MapPin } from "lucide-react"
 import { Cormorant_Garamond } from "next/font/google"
 import localFont from "next/font/local"
@@ -79,7 +78,7 @@ export function GuestInformation() {
             <div className="relative w-full rounded-2xl overflow-hidden border border-[#1D2A73]/40 shadow-xl bg-white p-4 sm:p-6 space-y-3 sm:space-y-4">
               <div className="text-center space-y-2 sm:space-y-3">
                 <p className="text-xs sm:text-sm font-semibold text-[#1D2A73]">
-                  formal/smart casual attire
+                  Formal/Smart Casual Attire
                 </p>
               </div>
 
@@ -97,7 +96,7 @@ export function GuestInformation() {
               <div className="space-y-4">
                 <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-[#1D2A73] leading-relaxed">
                   <p className="text-center">
-                    We warmly invite you to dress in <span className="font-semibold">smart casual attire</span> for our special day. Feel free to express your personal style while incorporating our wedding color palette to create a harmonious and elegant celebration.
+                    We warmly invite you to dress in <span className="font-semibold">Formal/Smart Casual attire</span> for our special day. Feel free to express your personal style while incorporating our wedding color palette to create a harmonious and elegant celebration.
                   </p>
                   <p className="text-center">
                     Whether you choose a sophisticated blouse and trousers, a chic dress, or a polished casual ensemble, we encourage you to use our color palette as inspiration for your outfit.

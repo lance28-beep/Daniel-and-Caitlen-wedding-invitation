@@ -42,7 +42,7 @@ const faqItems: FAQItem[] = [
   {
     question: "How do I RSVP?",
     answer:
-      `Please RSVP through the RSVP section on this invitation. Simply search for your name in the guest list, confirm your attendance, and let us know if you'll be bringing companions. We kindly ask for your response on or before January 31, 2026 to help us prepare for the big day.`,
+      `Please RSVP through the RSVP section on this invitation. Simply search for your name in the guest list, confirm your attendance, and let us know if you'll be bringing companions. We kindly ask for your response on or before May 2, 2026 to help us prepare for the big day.`,
   },
   {
     question: "Can I bring a plus one or additional guests?",
@@ -52,7 +52,7 @@ const faqItems: FAQItem[] = [
   {
     question: "Is there a dress code?",
     answer:
-      `Yes! We kindly request our guests to dress in formal attire matching our wedding colors. Please see the Attire section in Details for specific guidelines:\n\nNinong & Guest:\n• Barong Tagalog | Puting Panloob | Itim na Pantalon | Itim na sapatos\n\nNinang & Guest:\n• Modern Filipiniana or Traje de Mestiza\n\nWe encourage you to dress according to our wedding color to help create a soft, elegant romantic celebration.`,
+      `Yes! We warmly invite you to dress in Formal/Smart Casual attire for our special day. Feel free to express your personal style while incorporating our wedding color palette to create a harmonious and elegant celebration. Whether you choose a sophisticated blouse and trousers, a chic dress, or a polished casual ensemble, we encourage you to use our color palette as inspiration for your outfit. Please see the Attire section in Guest Information for more details.`,
   },
   {
     question: "Will there be assigned seating?",
