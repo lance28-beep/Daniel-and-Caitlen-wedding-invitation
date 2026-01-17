@@ -3,10 +3,17 @@
 import { useState, useEffect } from "react"
 import { Heart, RefreshCw, TrendingUp, Mail, Users, MapPin, Calendar, Crown } from "lucide-react"
 import { Cormorant_Garamond } from "next/font/google"
+import localFont from "next/font/local"
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["400"],
+})
+
+const armoire = localFont({
+  src: "../../armoire-1-0-trial/armoire-1.0-regular-TRIAL.otf",
+  variable: "--font-armoire",
+  display: "swap",
 })
 
 interface Guest {
@@ -197,7 +204,8 @@ export function BookOfGuests() {
         </p>
 
         <h2
-          className="style-script-regular text-xl sm:text-3xl md:text-4xl lg:text-5xl text-white mb-1 sm:mb-2 md:mb-3"
+          className={`${armoire.className} text-xl sm:text-3xl md:text-4xl lg:text-5xl text-white mb-1 sm:mb-2 md:mb-3`}
+          style={{ fontWeight: 400 }}
         >
           Book of Guests
         </h2>

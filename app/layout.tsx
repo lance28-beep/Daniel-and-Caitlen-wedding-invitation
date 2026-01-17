@@ -1,6 +1,7 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Great_Vibes, Inter, Imperial_Script, Cinzel } from "next/font/google"
+import { Great_Vibes, Inter, Cinzel } from "next/font/google"
+import localFont from "next/font/local"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { siteConfig } from "@/content/site"
@@ -59,7 +60,11 @@ const jsonLd = {
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 const greatVibes = Great_Vibes({ subsets: ["latin"], weight: "400", variable: "--font-serif" })
-const imperialScript = Imperial_Script({ subsets: ["latin"], weight: "400", variable: "--font-imperial-script" })
+const armoire = localFont({
+  src: "../armoire-1-0-trial/armoire-1.0-regular-TRIAL.otf",
+  variable: "--font-imperial-script",
+  display: "swap",
+})
 const cinzel = Cinzel({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-cinzel" })
 
 export const metadata: Metadata = {
@@ -179,7 +184,7 @@ export default function RootLayout({
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </head>
       <body
-        className={`${inter.variable} ${greatVibes.variable} ${imperialScript.variable} ${cinzel.variable} font-inter antialiased text-foreground`}
+        className={`${inter.variable} ${greatVibes.variable} ${armoire.variable} ${cinzel.variable} font-inter antialiased text-foreground`}
       >
         {children}
         <Analytics />

@@ -16,10 +16,17 @@ import {
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import { Cormorant_Garamond } from "next/font/google"
+import localFont from "next/font/local"
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["400"],
+})
+
+const armoire = localFont({
+  src: "../../armoire-1-0-trial/armoire-1.0-regular-TRIAL.otf",
+  variable: "--font-armoire",
+  display: "swap",
 })
 
 export function Details() {
@@ -177,7 +184,8 @@ export function Details() {
         </p>
 
         <h2
-          className="style-script-regular text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-1.5 sm:mb-3 md:mb-4"
+          className={`${armoire.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-1.5 sm:mb-3 md:mb-4`}
+          style={{ fontWeight: 400 }}
         >
           Details
         </h2>
@@ -215,7 +223,7 @@ export function Details() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#BCCFC0]/95 via-[#BCCFC0]/65 to-transparent" />
             <div className="absolute inset-0 flex flex-col justify-end px-3 sm:px-6 pb-3 sm:pb-6 text-white">
-              <p className="style-script-regular text-xl sm:text-2xl md:text-3xl font-normal leading-none drop-shadow-md mb-2">
+              <p className={`${armoire.className} text-xl sm:text-2xl md:text-3xl font-normal leading-none drop-shadow-md mb-2`} style={{ fontWeight: 400 }}>
                 Ceremony
               </p>
             </div>
@@ -308,7 +316,7 @@ export function Details() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#BCCFC0]/95 via-[#BCCFC0]/65 to-transparent" />
             <div className="absolute inset-0 flex flex-col justify-end px-3 sm:px-6 pb-3 sm:pb-6 text-white">
-              <p className="style-script-regular text-xl sm:text-2xl md:text-3xl font-normal leading-none drop-shadow-md mb-2">
+              <p className={`${armoire.className} text-xl sm:text-2xl md:text-3xl font-normal leading-none drop-shadow-md mb-2`} style={{ fontWeight: 400 }}>
                 Reception
               </p>
             </div>

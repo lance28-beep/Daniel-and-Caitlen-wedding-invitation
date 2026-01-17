@@ -3,10 +3,17 @@
 import { Section } from "@/components/section"
 import { siteConfig } from "@/content/site"
 import { Cormorant_Garamond } from "next/font/google"
+import localFont from "next/font/local"
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
+})
+
+const armoire = localFont({
+  src: "../../armoire-1-0-trial/armoire-1.0-regular-TRIAL.otf",
+  variable: "--font-armoire",
+  display: "swap",
 })
 
 export function Welcome() {
@@ -45,8 +52,8 @@ export function Welcome() {
               {groomName} &amp; {brideName}
             </p>
             <h2
-              className="style-script-regular text-3xl sm:text-4xl md:text-5xl lg:text-[2.9rem] text-[#FFFFFF]"
-              style={{ textShadow: "0 3px 14px rgba(12,18,48,0.5)" }}
+              className={`${armoire.className} text-3xl sm:text-4xl md:text-5xl lg:text-[2.9rem] text-[#FFFFFF]`}
+              style={{ textShadow: "0 3px 14px rgba(12,18,48,0.5)", fontWeight: 400 }}
             >
               Welcome to our wedding website
             </h2>

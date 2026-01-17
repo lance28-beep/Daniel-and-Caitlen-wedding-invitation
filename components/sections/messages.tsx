@@ -10,11 +10,18 @@ import { Button } from "@/components/ui/button"
 import { useToast } from "@/hooks/use-toast"
 import MessageWallDisplay from "./message-wall-display"
 import { Cormorant_Garamond } from "next/font/google"
+import localFont from "next/font/local"
 import { siteConfig } from "@/content/site"
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
+})
+
+const armoire = localFont({
+  src: "../../armoire-1-0-trial/armoire-1.0-regular-TRIAL.otf",
+  variable: "--font-armoire",
+  display: "swap",
 })
 
 interface Message {
@@ -324,7 +331,7 @@ export function Messages() {
             >
               Messages for {coupleDisplayName}
             </p>
-            <h2 className="style-script-regular text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white">
+            <h2 className={`${armoire.className} text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white`} style={{ fontWeight: 400 }}>
               Love notes &amp; prayers
             </h2>
           </div>

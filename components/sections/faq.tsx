@@ -4,11 +4,18 @@ import { useState, useEffect } from "react"
 import { ChevronDown } from "lucide-react"
 import { Section } from "@/components/section"
 import { Cormorant_Garamond } from "next/font/google"
+import localFont from "next/font/local"
 import { siteConfig } from "@/content/site"
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["400", "600", "700"],
+})
+
+const armoire = localFont({
+  src: "../../armoire-1-0-trial/armoire-1.0-regular-TRIAL.otf",
+  variable: "--font-armoire",
+  display: "swap",
 })
 
 interface FAQItem {
@@ -152,7 +159,8 @@ export function FAQ() {
         </p>
 
         <h2
-          className="style-script-regular text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-1.5 sm:mb-3 md:mb-4"
+          className={`${armoire.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-1.5 sm:mb-3 md:mb-4`}
+          style={{ fontWeight: 400 }}
         >
           Frequently Asked Questions
         </h2>

@@ -28,10 +28,10 @@ export const siteConfig = {
     guestsTime: "12:00 PM",
   },
   reception: {
-    location: "Dusit Thani Mactan Cebu, Ballroom 1",
+    location: "Dusit Thani Mactan Cebu",
     venue: "Dusit Thani Mactan Cebu, Ballroom 1",
     date: "June 2, 2026",
-    time: "To be announced",
+    time: "6:00 pm",
   },
   dressCode: {
     theme: "Modern Filipiniana",

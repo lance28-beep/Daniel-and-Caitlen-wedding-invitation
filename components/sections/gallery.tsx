@@ -7,6 +7,7 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react"
 import { Section } from "@/components/section"
 import { motion } from "motion/react"
 import { Cormorant_Garamond, WindSong } from "next/font/google"
+import localFont from "next/font/local"
 import { siteConfig } from "@/content/site"
 // Removed circular gallery in favor of a responsive masonry layout
 
@@ -20,15 +21,26 @@ const windSong = WindSong({
   weight: "400",
 })
 
+const armoire = localFont({
+  src: "../../armoire-1-0-trial/armoire-1.0-regular-TRIAL.otf",
+  variable: "--font-armoire",
+  display: "swap",
+})
+
 const galleryHashtag = "#JohnAndVanessaWedding"
 
 const galleryItems = [
-  { image: "/mobile-background/couple (1).webp", text: " " },
-  { image: "/mobile-background/couple (2).webp", text: " " },
+  { image: "/img/1.JPG", text: " " },
+  { image: "/img/2.jpg", text: " " },
+  { image: "/img/3.JPG", text: " " },
+  { image: "/img/4.JPG", text: " " },
+  { image: "/img/5.jpg", text: " " },
+  { image: "/img/6.jpg", text: " " },
+  { image: "/img/7.jpg", text: " " },
+  { image: "/img/8.jpg", text: " " },
+  { image: "/img/9.jpg", text: " " },
   { image: "/mobile-background/couple (3).webp", text: " " },
-  { image: "/desktop-background/couple (4).webp", text: " " },
-  { image: "/desktop-background/couple (5).webp", text: " " },
-  { image: "/desktop-background/couple (7).webp", text: " " },
+ 
 
 ]
 
@@ -179,7 +191,8 @@ export function Gallery() {
             Cherished Moments with {coupleDisplayName}
           </p>
           <h2
-            className="style-script-regular text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white"
+            className={`${armoire.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white`}
+            style={{ fontWeight: 400 }}
           >
             Our Love Story in Pictures
           </h2>

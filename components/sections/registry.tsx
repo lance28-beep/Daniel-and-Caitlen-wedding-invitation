@@ -2,6 +2,13 @@
 
 import Image from "next/image"
 import { Section } from "@/components/section"
+import localFont from "next/font/local"
+
+const armoire = localFont({
+  src: "../../armoire-1-0-trial/armoire-1.0-regular-TRIAL.otf",
+  variable: "--font-armoire",
+  display: "swap",
+})
 
 export function Registry() {
   return (
@@ -18,12 +25,12 @@ export function Registry() {
           <div className="w-8 sm:w-12 md:w-16 h-px bg-white/60" />
         </div>
         
-        <h2 className="style-script-regular text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-white mb-2 sm:mb-3 md:mb-4">
+        <h2 className={`${armoire.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-white mb-2 sm:mb-3 md:mb-4`} style={{ fontWeight: 400 }}>
           Gift Guide
         </h2>
         
         <p className="text-xs sm:text-sm md:text-base lg:text-lg text-white/90 font-light max-w-2xl mx-auto leading-relaxed px-2">
-          With all that we have we are truly blessed. Your Presence and prayer are that we request, but if you are thinking of giving a gift, to help us on our way a monetary or if you prefer to purchase a gift, feel free to surprise as on your on way.
+          Your presence is the greatest gift to us, but if you wish to give, a monetary gift or traditional gift through our gift registry would be well appreciated.
         </p>
         
         <div className="flex items-center justify-center gap-2 mt-3 sm:mt-4">

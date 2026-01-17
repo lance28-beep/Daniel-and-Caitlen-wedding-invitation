@@ -19,11 +19,18 @@ import {
   Users,
 } from "lucide-react"
 import { Cormorant_Garamond } from "next/font/google"
+import localFont from "next/font/local"
 import { siteConfig } from "@/content/site"
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["400"],
+})
+
+const armoire = localFont({
+  src: "../../armoire-1-0-trial/armoire-1.0-regular-TRIAL.otf",
+  variable: "--font-armoire",
+  display: "swap",
 })
 
 interface ApiGuest {
@@ -458,8 +465,8 @@ export function GuestList() {
         </p>
         
         <h2
-          className="style-script-regular text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-1.5 sm:mb-3 md:mb-4"
-          style={{ textShadow: "0 4px 18px rgba(0,0,0,0.85)" }}
+          className={`${armoire.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-1.5 sm:mb-3 md:mb-4`}
+          style={{ textShadow: "0 4px 18px rgba(0,0,0,0.85)", fontWeight: 400 }}
         >
           RSVP
         </h2>

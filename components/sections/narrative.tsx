@@ -6,10 +6,17 @@ import { siteConfig } from "@/content/site"
 import Stack from "@/components/stack"
 import { motion } from "motion/react"
 import { Cormorant_Garamond } from "next/font/google"
+import localFont from "next/font/local"
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
+})
+
+const armoire = localFont({
+  src: "../../armoire-1-0-trial/armoire-1.0-regular-TRIAL.otf",
+  variable: "--font-armoire",
+  display: "swap",
 })
 
 const storyTabs = [
@@ -60,8 +67,8 @@ export function Narrative() {
               Al &amp; Jhessa&apos;s Love Story
             </p>
             <h2
-              className="style-script-regular text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#2F1C1C]"
-              style={{ textShadow: "0 4px 18px rgba(255,255,255,0.6)" }}
+              className={`${armoire.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#2F1C1C]`}
+              style={{ textShadow: "0 4px 18px rgba(255,255,255,0.6)", fontWeight: 400 }}
             >
               When Two Stories Became One
             </h2>

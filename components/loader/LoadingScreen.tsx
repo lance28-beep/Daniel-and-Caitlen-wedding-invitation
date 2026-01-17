@@ -2,10 +2,17 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { siteConfig } from '@/content/site';
 import { Cormorant_Garamond } from 'next/font/google';
+import localFont from 'next/font/local';
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
   weight: ['400'],
+});
+
+const armoire = localFont({
+  src: '../../armoire-1-0-trial/armoire-1.0-regular-TRIAL.otf',
+  variable: '--font-armoire',
+  display: 'swap',
 });
 
 interface LoadingScreenProps {
@@ -119,12 +126,12 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
         <div className="text-center w-full max-w-sm sm:max-w-2xl mx-auto px-6 sm:px-8 md:px-12">
           {/* Couple names */}
           <div
-            className={`${cormorant.className} text-4xl sm:text-6xl md:text-7xl mb-4 sm:mb-6 leading-tight`}
+            className={`${armoire.className} text-4xl sm:text-6xl md:text-7xl mb-4 sm:mb-6 leading-tight flex flex-wrap items-center justify-center gap-x-2 sm:gap-x-3`}
             style={{ fontWeight: 400 }}
           >
-            <div style={{ color: '#FFFFFF' }}>{siteConfig.couple.groomNickname}</div>
-            <div style={{ color: '#FFFFFF' }}>&</div>
-            <div style={{ color: '#FFD83F' }}>{siteConfig.couple.brideNickname}</div>
+            <span style={{ color: '#FFFFFF' }}>{siteConfig.couple.groomNickname}</span>
+            <span style={{ color: '#FFFFFF' }}>and</span>
+            <span style={{ color: '#FFD83F' }}>{siteConfig.couple.brideNickname}</span>
           </div>
 
           {/* Wedding date */}

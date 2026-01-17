@@ -86,7 +86,7 @@
   --font-sans: "Inter", "Inter Fallback";
   /* Updated serif font to Great Vibes */
   --font-serif: "Great Vibes", "Great Vibes Fallback";
-  --font-imperial-script: "Imperial Script", cursive;
+  --font-imperial-script: "Armoire", cursive;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);

@@ -5,10 +5,17 @@ import { useState, useEffect, useMemo, useRef } from "react"
 import { siteConfig } from "@/content/site"
 import { Loader2, Users } from "lucide-react"
 import { Cormorant_Garamond } from "next/font/google"
+import localFont from "next/font/local"
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["400"],
+})
+
+const armoire = localFont({
+  src: "../../armoire-1-0-trial/armoire-1.0-regular-TRIAL.otf",
+  variable: "--font-armoire",
+  display: "swap",
 })
 
 interface EntourageMember {
@@ -311,7 +318,8 @@ export function Entourage() {
         </p>
 
         <h2
-          className="style-script-regular text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-1 sm:mb-2 md:mb-2.5"
+          className={`${armoire.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-1 sm:mb-2 md:mb-2.5`}
+          style={{ fontWeight: 400 }}
         >
           Wedding Entourage
         </h2>

@@ -8,10 +8,17 @@ import { Section } from "@/components/section"
 import { QRCodeCanvas } from "qrcode.react"
 import { siteConfig } from "@/content/site"
 import { Cormorant_Garamond } from "next/font/google"
+import localFont from "next/font/local"
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["400"],
+})
+
+const armoire = localFont({
+  src: "../../armoire-1-0-trial/armoire-1.0-regular-TRIAL.otf",
+  variable: "--font-armoire",
+  display: "swap",
 })
 
 export function SnapShare() {
@@ -195,7 +202,8 @@ export function SnapShare() {
             Share Your Memories
           </div>
           <h2
-            className="style-script-regular text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-white mt-2 sm:mt-4"
+            className={`${armoire.className} text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-white mt-2 sm:mt-4`}
+            style={{ fontWeight: 400 }}
           >
             Capture & Share the Celebration
           </h2>
@@ -280,71 +288,6 @@ export function SnapShare() {
                   Scan with any camera app to open the full invitation and schedule.
                 </p>
               </div>
-            </div>
-
-            <div className="bg-white/95 rounded-lg sm:rounded-[20px] p-3 sm:p-5 md:p-7 shadow-xl border border-[#1D2A73]/40">
-              <h5 className={`${cormorant.className} text-base sm:text-lg md:text-xl font-semibold text-[#1D2A73] mb-2 sm:mb-3 text-center`}>
-                Use Our Hashtags
-              </h5>
-              <p className={`${cormorant.className} text-[#1D2A73] text-xs sm:text-sm text-center mb-3 sm:mb-4 leading-relaxed`}>
-                Tag your photos and posts with our wedding hashtags to join the celebration!
-              </p>
-              
-              <div className="space-y-2.5 sm:space-y-3 mb-3 sm:mb-4">
-                {hashtags.map((hashtag, index) => (
-                  <motion.div
-                    key={index}
-                    className="bg-white/90 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-[#1D2A73]/40 shadow-sm hover:shadow-md transition-all duration-200"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{ scale: 1.02 }}
-                  >
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-3">
-                      <span className={`${cormorant.className} text-[#1D2A73] font-bold text-sm sm:text-base md:text-lg break-all flex-1 text-center sm:text-left`}>
-                        {hashtag}
-                      </span>
-                      <button
-                        onClick={() => copyHashtag(hashtag, index)}
-                        className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-[#FFD83F] hover:bg-[#FFE066] text-[#0C1230] transition-all duration-200 shadow-md hover:shadow-lg hover:scale-105 whitespace-nowrap flex-shrink-0 ${
-                          copiedHashtagIndex === index ? "bg-green-600 from-green-600 to-green-500" : ""
-                        }`}
-                      >
-                        {copiedHashtagIndex === index ? (
-                          <>
-                            <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                            <span className={`${cormorant.className} text-xs sm:text-sm font-medium`}>Copied!</span>
-                          </>
-                        ) : (
-                          <>
-                            <Copy className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                            <span className={`${cormorant.className} text-xs sm:text-sm font-medium`}>Copy</span>
-                          </>
-                        )}
-                      </button>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-              <button
-                onClick={copyAllHashtags}
-                className={`w-full flex items-center justify-center gap-2 px-4 py-2.5 sm:py-3 rounded-lg bg-[#FFD83F] hover:bg-[#FFE066] text-[#0C1230] border-2 border-[#FFD83F] transition-all duration-200 shadow-md hover:shadow-lg hover:border-[#FFE066] ${
-                  copiedAllHashtags ? "bg-green-500/30 border-green-400/60" : ""
-                }`}
-              >
-                {copiedAllHashtags ? (
-                  <>
-                    <Check className="w-4 h-4 sm:w-5 sm:h-5" />
-                    <span className={`${cormorant.className} text-xs sm:text-sm font-semibold uppercase tracking-[0.15em]`}>All Copied!</span>
-                  </>
-                ) : (
-                  <>
-                    <Copy className="w-4 h-4 sm:w-5 sm:h-5" />
-                    <span className={`${cormorant.className} text-xs sm:text-sm font-semibold uppercase tracking-[0.15em]`}>Copy All Hashtags</span>
-                  </>
-                )}
-              </button>
             </div>
 
             <div className="bg-white/95 rounded-lg sm:rounded-[20px] p-3 sm:p-5 md:p-7 shadow-xl border border-[#1D2A73]/40">

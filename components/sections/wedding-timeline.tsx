@@ -8,10 +8,17 @@ import { siteConfig } from "@/content/site"
 import { Clock, MapPin } from "lucide-react"
 import { motion } from "motion/react"
 import { Cormorant_Garamond } from "next/font/google"
+import localFont from "next/font/local"
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["400"],
+})
+
+const armoire = localFont({
+  src: "../../armoire-1-0-trial/armoire-1.0-regular-TRIAL.otf",
+  variable: "--font-armoire",
+  display: "swap",
 })
 
 const { groomNickname, brideNickname } = siteConfig.couple
@@ -35,7 +42,7 @@ interface TimelineEvent {
 
 const timelineEvents: TimelineEvent[] = [
   {
-    time: "1:30 PM",
+    time: "12:30 PM",
     title: "Arrival",
     description: "Please arrive on time to find your seat, settle in, and get ready for the celebration.",
     location: ceremonyVenue,
@@ -43,16 +50,8 @@ const timelineEvents: TimelineEvent[] = [
     imageSrc: "/weddingtimeline/arrivalimage.png",
   },
   {
-    time: "2:30 PM",
-    title: "Processional",
-    description: "The wedding party begins the processional as we prepare for the ceremony.",
-    location: ceremonyVenue,
-    icon: ChurchIcon,
-    imageSrc: "/weddingtimeline/WeddingCeremony.png",
-  },
-  {
-    time: "3:00 PM",
-    title: "Wedding Ceremony",
+    time: "1:30 PM",
+    title: "Processional/Wedding Ceremony",
     description: `Join us as ${groomNickname} & ${brideNickname} exchange vows and begin their life together.`,
     location: ceremonyVenue,
     icon: RingsIcon,
@@ -61,7 +60,7 @@ const timelineEvents: TimelineEvent[] = [
   {
     time: "5:00 PM",
     title: "Cocktail Hour",
-    description: "Enjoy drinks and light bites as we transition into the reception and mingle with guests.",
+    description: "Enjoy drinks and light bites as we transition into the reception and mingle with guests. (Tentative time)",
     location: receptionVenue,
     icon: CocktailIcon,
     imageSrc: "/weddingtimeline/CockTailHour.png",
@@ -75,19 +74,11 @@ const timelineEvents: TimelineEvent[] = [
     imageSrc: "/weddingtimeline/reception welcom.png",
   },
   {
-    time: "7:00 PM",
-    title: "Dinner Service",
-    description: "Share a relaxed meal together as we continue the celebration.",
-    location: receptionVenue,
-    icon: DinnerIcon,
-    imageSrc: "/weddingtimeline/DinnerService.png",
-  },
-  {
     time: "9:00 PM",
-    title: "Send-off",
-    description: `Help us send off ${groomNickname} & ${brideNickname} with love and well-wishes.`,
+    title: "Dance Party",
+    description: "Let's dance the night away and celebrate together!",
     location: receptionVenue,
-    icon: CarIcon,
+    icon: DanceIcon,
     imageSrc: "/weddingtimeline/SendOff.png",
   },
 ]
@@ -159,7 +150,7 @@ export function WeddingTimeline() {
           Day Schedule
         </p>
 
-        <h2 className="style-script-regular text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-white mb-1.5 sm:mb-3 md:mb-4">
+        <h2 className={`${armoire.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-white mb-1.5 sm:mb-3 md:mb-4`} style={{ fontWeight: 400 }}>
           Wedding Timeline
         </h2>
 

@@ -4,11 +4,18 @@ import { Section } from "@/components/section"
 import { siteConfig } from "@/content/site"
 import { Car, Navigation, MapPin } from "lucide-react"
 import { Cormorant_Garamond } from "next/font/google"
+import localFont from "next/font/local"
 import Image from "next/image"
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["400"],
+})
+
+const armoire = localFont({
+  src: "../../armoire-1-0-trial/armoire-1.0-regular-TRIAL.otf",
+  variable: "--font-armoire",
+  display: "swap",
 })
 
 export function GuestInformation() {
@@ -28,7 +35,8 @@ export function GuestInformation() {
         </p>
 
         <h2
-          className="style-script-regular text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-1.5 sm:mb-3 md:mb-4"
+          className={`${armoire.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-1.5 sm:mb-3 md:mb-4`}
+          style={{ fontWeight: 400 }}
         >
           Guest Information
         </h2>
@@ -71,13 +79,13 @@ export function GuestInformation() {
             <div className="relative w-full rounded-2xl overflow-hidden border border-[#1D2A73]/40 shadow-xl bg-white p-4 sm:p-6 space-y-3 sm:space-y-4">
               <div className="text-center space-y-2 sm:space-y-3">
                 <p className="text-xs sm:text-sm font-semibold text-[#1D2A73]">
-                  {siteConfig.dressCode.note}
+                  formal/smart casual attire
                 </p>
               </div>
 
               <div className="relative w-full aspect-[4/3] sm:aspect-[5/3] rounded-xl overflow-hidden border border-[#1D2A73]/40 bg-white mb-3">
                 <Image
-                  src="/Details/newguestattire.png"
+                  src="/Details/attire.png"
                   alt="Attire guideline"
                   fill
                   className="object-contain"
@@ -87,25 +95,13 @@ export function GuestInformation() {
               </div>
 
               <div className="space-y-4">
-                <div>
-                  <div className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm">
-                    <div className="space-y-2">
-                      <p className="text-[#1D2A73]">
-                        <span className="font-semibold">Ninong &amp; Guest:</span>
-                      </p>
-                      <p className="text-[#1D2A73] pl-4">
-                        Barong Tagalog | Puting Panloob | Itim na Pantalon | Itim na sapatos
-                      </p>
-                    </div>
-                    <div className="space-y-2">
-                      <p className="text-[#1D2A73]">
-                        <span className="font-semibold">Ninang &amp; Guest:</span>
-                      </p>
-                      <p className="text-[#1D2A73] pl-4">
-                        Modern Filipiniana or Traje de Mestiza
-                      </p>
-                    </div>
-                  </div>
+                <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-[#1D2A73] leading-relaxed">
+                  <p className="text-center">
+                    We warmly invite you to dress in <span className="font-semibold">smart casual attire</span> for our special day. Feel free to express your personal style while incorporating our wedding color palette to create a harmonious and elegant celebration.
+                  </p>
+                  <p className="text-center">
+                    Whether you choose a sophisticated blouse and trousers, a chic dress, or a polished casual ensemble, we encourage you to use our color palette as inspiration for your outfit.
+                  </p>
                 </div>
 
                 {/* Color Palette */}
@@ -114,13 +110,11 @@ export function GuestInformation() {
                     Color Palette
                   </p>
                   <div className="flex flex-wrap items-center justify-start gap-2 sm:gap-2.5">
-                    <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border border-[#1D2A73]/20 shadow-sm" style={{ backgroundColor: '#0C1230' }} />
-                    <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border border-[#1D2A73]/20 shadow-sm" style={{ backgroundColor: '#1D2A73' }} />
-                    <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border border-[#1D2A73]/20 shadow-sm" style={{ backgroundColor: '#163693' }} />
-                    <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border border-[#1D2A73]/20 shadow-sm" style={{ backgroundColor: '#372C6C' }} />
-                    <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border border-[#1D2A73]/20 shadow-sm" style={{ backgroundColor: '#4C3A83' }} />
-                    <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border border-[#1D2A73]/20 shadow-sm" style={{ backgroundColor: '#231E54' }} />
-                    <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border border-[#1D2A73]/20 shadow-sm" style={{ backgroundColor: '#FFD83F' }} />
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border border-[#1D2A73]/20 shadow-sm" style={{ backgroundColor: '#272561' }} />
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border border-[#1D2A73]/20 shadow-sm" style={{ backgroundColor: '#40357B' }} />
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border border-[#1D2A73]/20 shadow-sm" style={{ backgroundColor: '#564591' }} />
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border border-[#1D2A73]/20 shadow-sm" style={{ backgroundColor: '#233483' }} />
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border border-[#1D2A73]/20 shadow-sm" style={{ backgroundColor: '#2043A2' }} />
                   </div>
                 </div>
               </div>

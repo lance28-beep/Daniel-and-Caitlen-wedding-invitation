@@ -3,6 +3,7 @@
 import { useEffect, useState, useMemo } from "react"
 import { motion } from "motion/react"
 import { Cormorant_Garamond, Cinzel } from "next/font/google"
+import localFont from "next/font/local"
 import { siteConfig } from "@/content/site"
 
 const desktopImages: string[] = [
@@ -17,8 +18,6 @@ const mobileImages: string[] = [
   '/mobile-background/couple (1).webp',
   '/mobile-background/couple (2).webp',
   '/mobile-background/couple (3).webp',
-  '/mobile-background/couple (1).webp',
-  '/mobile-background/couple (2).webp',
 ];
 
 const SHOW_BUTTERFLIES = false
@@ -31,6 +30,12 @@ const cormorant = Cormorant_Garamond({
 const cinzel = Cinzel({
   subsets: ["latin"],
   weight: "700",
+})
+
+const armoire = localFont({
+  src: "../../armoire-1-0-trial/armoire-1.0-regular-TRIAL.otf",
+  variable: "--font-armoire",
+  display: "swap",
 })
 
 export function Hero() {
@@ -469,14 +474,15 @@ export function Hero() {
               we joyfully invite you to witness our union.
             </h1>
             <h1
-              className="style-script-regular text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl drop-shadow-2xl"
+              className={`${armoire.className} text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl drop-shadow-2xl`}
               style={{
                 color: '#FFFFFF',
                 textShadow: "0 0 24px rgba(0,0,0,0.9)",
+                fontWeight: 400,
               }}
             >
               <span className="block">{groomName}</span>
-              <span className="block">&</span>
+              <span className="block">and</span>
               <span className="block">{brideName}</span>
             </h1>
           </div>
