@@ -18,6 +18,38 @@ const armoire = localFont({
   display: "swap",
 })
 
+const yasashiiBold = localFont({
+  src: "../../Fonts/Fonts_Package_5767477d99d0c7d14eafd5a0b83e7934/YasashiiW03-Bold/web/font/YasashiiW03-Bold.woff2",
+  weight: "700",
+  display: "swap",
+})
+
+const helveticaCondensed = localFont({
+  src: "../../Fonts/helvetica-condensed-regular_lWeSi (1)/Helvetica Condensed Regular/Helvetica Condensed Regular.ttf",
+  display: "swap",
+})
+
+const neutrafaceText = localFont({
+  src: [
+    {
+      path: "../../Fonts/neutraface-text/Neutraface Text Book.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../Fonts/neutraface-text/Neutraface Text Demi.otf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../Fonts/neutraface-text/Neutraface Text Bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  display: "swap",
+})
+
 interface EntourageMember {
   Name: string
   RoleCategory: string
@@ -312,21 +344,22 @@ export function Entourage() {
       <div className={`relative z-30 text-center mb-4 sm:mb-5 md:mb-6 px-3 sm:px-4 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'}`}>
         {/* Small label */}
         <p
-          className={`${cormorant.className} text-[0.7rem] sm:text-xs md:text-sm uppercase tracking-[0.28em] text-white mb-2`}
+          className={`${neutrafaceText.className} text-[0.7rem] sm:text-xs md:text-sm uppercase tracking-[0.28em] text-white mb-2`}
+          style={{ fontWeight: 400 }}
         >
           Those who stand with {siteConfig.couple.groomNickname} &amp; {siteConfig.couple.brideNickname}
         </p>
 
         <h2
-          className={`${armoire.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-1 sm:mb-2 md:mb-2.5`}
-          style={{ fontWeight: 400 }}
+          className={`${yasashiiBold.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-1 sm:mb-2 md:mb-2.5`}
+          style={{ fontWeight: 700 }}
         >
           Wedding Entourage
         </h2>
 
         {/* Sublabel */}
         <p
-          className={`${cormorant.className} text-xs sm:text-sm md:text-base text-white mb-2 sm:mb-2.5 md:mb-3 italic`}
+          className={`${helveticaCondensed.className} text-xs sm:text-sm md:text-base text-white mb-2 sm:mb-2.5 md:mb-3 italic`}
         >
           Honoring those who share in our joy
         </p>

@@ -21,6 +21,17 @@ const armoire = localFont({
   display: "swap",
 })
 
+const yasashiiBold = localFont({
+  src: "../../Fonts/Fonts_Package_5767477d99d0c7d14eafd5a0b83e7934/YasashiiW03-Bold/web/font/YasashiiW03-Bold.woff2",
+  weight: "700",
+  display: "swap",
+})
+
+const helveticaCondensed = localFont({
+  src: "../../Fonts/helvetica-condensed-regular_lWeSi (1)/Helvetica Condensed Regular/Helvetica Condensed Regular.ttf",
+  display: "swap",
+})
+
 export function SnapShare() {
   const [copiedHashtagIndex, setCopiedHashtagIndex] = useState<number | null>(null)
   const [copiedAllHashtags, setCopiedAllHashtags] = useState(false)
@@ -202,12 +213,12 @@ export function SnapShare() {
             Share Your Memories
           </div>
           <h2
-            className={`${armoire.className} text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-white mt-2 sm:mt-4`}
-            style={{ fontWeight: 400 }}
+            className={`${yasashiiBold.className} text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-white mt-2 sm:mt-4`}
+            style={{ fontWeight: 700 }}
           >
             Capture & Share the Celebration
           </h2>
-          <p className={`${cormorant.className} text-xs sm:text-sm md:text-base text-white max-w-2xl mx-auto mt-2 sm:mt-4 leading-relaxed px-2`}>
+          <p className={`${helveticaCondensed.className} text-xs sm:text-sm md:text-base text-white max-w-2xl mx-auto mt-2 sm:mt-4 leading-relaxed px-2`}>
             Capture the beautiful moments of {groomNickname} & {brideNickname}'s wedding day. Share your favorite memories so our keepsake gallery glows with every smile, embrace, and celebration from this special day.
           </p>
           <div className="mx-auto mt-3 sm:mt-5 h-px w-20 sm:w-24 bg-white/60" />

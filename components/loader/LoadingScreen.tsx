@@ -9,9 +9,9 @@ const cormorant = Cormorant_Garamond({
   weight: ['400'],
 });
 
-const armoire = localFont({
-  src: '../../armoire-1-0-trial/armoire-1.0-regular-TRIAL.otf',
-  variable: '--font-armoire',
+const yasashiiBold = localFont({
+  src: '../../Fonts/Fonts_Package_5767477d99d0c7d14eafd5a0b83e7934/YasashiiW03-Bold/web/font/YasashiiW03-Bold.woff2',
+  weight: '700',
   display: 'swap',
 });
 
@@ -126,8 +126,8 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
         <div className="text-center w-full max-w-sm sm:max-w-2xl mx-auto px-6 sm:px-8 md:px-12">
           {/* Couple names */}
           <div
-            className={`${armoire.className} text-4xl sm:text-6xl md:text-7xl mb-4 sm:mb-6 leading-tight flex flex-wrap items-center justify-center gap-x-2 sm:gap-x-3`}
-            style={{ fontWeight: 400 }}
+            className={`${yasashiiBold.className} text-4xl sm:text-6xl md:text-7xl mb-4 sm:mb-6 leading-tight flex items-center justify-center gap-x-2 sm:gap-x-3 whitespace-nowrap`}
+            style={{ fontWeight: 700 }}
           >
             <span style={{ color: '#FFFFFF' }}>{siteConfig.couple.groomNickname}</span>
             <span style={{ color: '#FFFFFF' }}>and</span>

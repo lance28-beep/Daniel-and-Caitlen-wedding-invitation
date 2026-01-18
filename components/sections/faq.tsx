@@ -18,6 +18,38 @@ const armoire = localFont({
   display: "swap",
 })
 
+const yasashiiBold = localFont({
+  src: "../../Fonts/Fonts_Package_5767477d99d0c7d14eafd5a0b83e7934/YasashiiW03-Bold/web/font/YasashiiW03-Bold.woff2",
+  weight: "700",
+  display: "swap",
+})
+
+const helveticaCondensed = localFont({
+  src: "../../Fonts/helvetica-condensed-regular_lWeSi (1)/Helvetica Condensed Regular/Helvetica Condensed Regular.ttf",
+  display: "swap",
+})
+
+const neutrafaceText = localFont({
+  src: [
+    {
+      path: "../../Fonts/neutraface-text/Neutraface Text Book.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../Fonts/neutraface-text/Neutraface Text Demi.otf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../Fonts/neutraface-text/Neutraface Text Bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  display: "swap",
+})
+
 interface FAQItem {
   question: string
   answer: string
@@ -153,19 +185,20 @@ export function FAQ() {
       <div className="relative z-30 text-center mb-6 sm:mb-9 md:mb-12 px-3 sm:px-4">
         {/* Small label */}
         <p
-          className={`${cormorant.className} text-[0.7rem] sm:text-xs md:text-sm uppercase tracking-[0.28em] text-white mb-2`}
+          className={`${neutrafaceText.className} text-[0.7rem] sm:text-xs md:text-sm uppercase tracking-[0.28em] text-white mb-2`}
+          style={{ fontWeight: 400 }}
         >
           Everything You Need to Know
         </p>
 
         <h2
-          className={`${armoire.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-1.5 sm:mb-3 md:mb-4`}
-          style={{ fontWeight: 400 }}
+          className={`${yasashiiBold.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-1.5 sm:mb-3 md:mb-4`}
+          style={{ fontWeight: 700 }}
         >
           Frequently Asked Questions
         </h2>
         
-        <p className={`${cormorant.className} text-xs sm:text-sm md:text-base text-white font-light max-w-xl mx-auto leading-relaxed px-2 mb-2 sm:mb-3`}>
+        <p className={`${helveticaCondensed.className} text-xs sm:text-sm md:text-base text-white font-light max-w-xl mx-auto leading-relaxed px-2 mb-2 sm:mb-3`}>
           Common questions answered to help you prepare for our special day
         </p>
 

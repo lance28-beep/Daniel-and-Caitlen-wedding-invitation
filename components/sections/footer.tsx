@@ -19,6 +19,38 @@ const cormorant = Cormorant_Garamond({
   weight: ["400"],
 })
 
+const yasashiiBold = localFont({
+  src: "../../Fonts/Fonts_Package_5767477d99d0c7d14eafd5a0b83e7934/YasashiiW03-Bold/web/font/YasashiiW03-Bold.woff2",
+  weight: "700",
+  display: "swap",
+})
+
+const helveticaCondensed = localFont({
+  src: "../../Fonts/helvetica-condensed-regular_lWeSi (1)/Helvetica Condensed Regular/Helvetica Condensed Regular.ttf",
+  display: "swap",
+})
+
+const neutrafaceText = localFont({
+  src: [
+    {
+      path: "../../Fonts/neutraface-text/Neutraface Text Book.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../Fonts/neutraface-text/Neutraface Text Demi.otf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../Fonts/neutraface-text/Neutraface Text Bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  display: "swap",
+})
+
 // Helper function to convert text to title case (first letter of each word uppercase)
 const toTitleCase = (str: string) => {
   return str
@@ -181,17 +213,18 @@ export function Footer() {
         {/* Names & Date below illustration */}
         <div className="mt-3 sm:mt-4 md:mt-5 text-center">
           <p
-            className={`${cormorant.className} tracking-[0.25em] sm:tracking-[0.3em] text-xs sm:text-sm md:text-base text-white uppercase`}
+            className={`${neutrafaceText.className} tracking-[0.25em] sm:tracking-[0.3em] text-xs sm:text-sm md:text-base text-white uppercase`}
+            style={{ fontWeight: 400 }}
           >
             {siteConfig.couple.groomNickname} & {siteConfig.couple.brideNickname}
           </p>
           <p
-            className={`${cormorant.className} text-sm sm:text-base md:text-lg text-white mt-1 sm:mt-2`}
+            className={`${helveticaCondensed.className} text-sm sm:text-base md:text-lg text-white mt-1 sm:mt-2`}
           >
             {ceremonyDate}
           </p>
           <p
-            className={`${cormorant.className} text-xs sm:text-sm md:text-base text-white mt-1 sm:mt-2`}
+            className={`${helveticaCondensed.className} text-xs sm:text-sm md:text-base text-white mt-1 sm:mt-2`}
           >
             {siteConfig.ceremony.venue}
           </p>
@@ -207,7 +240,7 @@ export function Footer() {
                 <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 bg-white/95 rounded-full flex items-center justify-center border border-white/40 flex-shrink-0 shadow-md">
                   <Heart className="w-5 h-5 sm:w-6 sm:h-6 md:w-6 md:h-6 text-white" fill="white" />
                 </div>
-                <h3 className={`${armoire.className} text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal text-white`} style={{ fontWeight: 400 }}>{siteConfig.couple.groomNickname} & {siteConfig.couple.brideNickname}</h3>
+                <h3 className={`${yasashiiBold.className} text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white`} style={{ fontWeight: 700 }}>{siteConfig.couple.groomNickname} & {siteConfig.couple.brideNickname}</h3>
               </div>
               <div className="space-y-2.5 sm:space-y-3 md:space-y-4">
                 <div className={`flex items-center gap-2 sm:gap-2.5 md:gap-3 ${cormorant.className} text-white`}>

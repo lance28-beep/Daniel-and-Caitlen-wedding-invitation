@@ -4,6 +4,40 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Heart, MessageCircle, Sparkles } from "lucide-react"
 import { useState, useEffect } from "react"
+import localFont from "next/font/local"
+
+const yasashiiBold = localFont({
+  src: "../../Fonts/Fonts_Package_5767477d99d0c7d14eafd5a0b83e7934/YasashiiW03-Bold/web/font/YasashiiW03-Bold.woff2",
+  weight: "700",
+  display: "swap",
+})
+
+const helveticaCondensed = localFont({
+  src: "../../Fonts/helvetica-condensed-regular_lWeSi (1)/Helvetica Condensed Regular/Helvetica Condensed Regular.ttf",
+  display: "swap",
+})
+
+const neutrafaceText = localFont({
+  src: [
+    {
+      path: "../../Fonts/neutraface-text/Neutraface Text Book.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../Fonts/neutraface-text/Neutraface Text Demi.otf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../Fonts/neutraface-text/Neutraface Text Bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-neutraface-text",
+  display: "swap",
+})
 
 interface Message {
   timestamp: string
@@ -73,16 +107,16 @@ export default function MessageWallDisplay({ messages, loading }: MessageWallDis
           <div className="absolute -inset-2 sm:-inset-3 rounded-full border-2 border-[#1D2A73]/25 animate-ping"></div>
           <div className="absolute -inset-1.5 sm:-inset-2 rounded-full border border-[#1D2A73]/40"></div>
         </div>
-        <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-playfair font-bold text-white mb-2 sm:mb-3 md:mb-4">
+        <h3 className={`${neutrafaceText.className} text-lg sm:text-xl md:text-2xl lg:text-3xl text-white mb-2 sm:mb-3 md:mb-4`} style={{ fontWeight: 700 }}>
           No Messages Yet
         </h3>
-        <p className="text-xs sm:text-sm md:text-base lg:text-lg text-white/95 font-lora max-w-md mx-auto leading-relaxed mb-4 sm:mb-5 md:mb-6">
+        <p className={`${helveticaCondensed.className} text-xs sm:text-sm md:text-base lg:text-lg text-white/95 max-w-md mx-auto leading-relaxed mb-4 sm:mb-5 md:mb-6`}>
           Be the first to share your heartfelt wishes for the happy couple!
         </p>
           <div className="mt-4 sm:mt-5 md:mt-6 lg:mt-8 flex justify-center">
             <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/60">
               <Sparkles className="h-3 w-3 sm:h-4 sm:w-4 text-white animate-pulse" />
-              <span className="text-[10px] sm:text-xs md:text-sm font-lora text-white/90">Your message will appear here</span>
+              <span className={`${helveticaCondensed.className} text-[10px] sm:text-xs md:text-sm text-white/90`}>Your message will appear here</span>
               <Sparkles className="h-3 w-3 sm:h-4 sm:w-4 text-white animate-pulse" style={{ animationDelay: '0.5s' }} />
             </div>
           </div>

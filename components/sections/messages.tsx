@@ -24,6 +24,38 @@ const armoire = localFont({
   display: "swap",
 })
 
+const yasashiiBold = localFont({
+  src: "../../Fonts/Fonts_Package_5767477d99d0c7d14eafd5a0b83e7934/YasashiiW03-Bold/web/font/YasashiiW03-Bold.woff2",
+  weight: "700",
+  display: "swap",
+})
+
+const helveticaCondensed = localFont({
+  src: "../../Fonts/helvetica-condensed-regular_lWeSi (1)/Helvetica Condensed Regular/Helvetica Condensed Regular.ttf",
+  display: "swap",
+})
+
+const neutrafaceText = localFont({
+  src: [
+    {
+      path: "../../Fonts/neutraface-text/Neutraface Text Book.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../Fonts/neutraface-text/Neutraface Text Demi.otf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../Fonts/neutraface-text/Neutraface Text Bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  display: "swap",
+})
+
 interface Message {
   timestamp: string
   name: string
@@ -140,10 +172,10 @@ function MessageForm({ onSuccess, onMessageSent }: MessageFormProps) {
                 <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-white" />
               </div>
             </div>
-            <h3 className="text-base sm:text-lg md:text-xl font-playfair font-bold text-[#1D2A73] mb-1.5 sm:mb-2">
+            <h3 className={`${neutrafaceText.className} text-base sm:text-lg md:text-xl text-[#1D2A73] mb-1.5 sm:mb-2`} style={{ fontWeight: 700 }}>
               Share Your Love
             </h3>
-            <p className="text-[10px] sm:text-xs md:text-sm text-[#1D2A73]/70 font-lora">
+            <p className={`${helveticaCondensed.className} text-[10px] sm:text-xs md:text-sm text-[#1D2A73]/70`}>
               Your words will be part of {coupleDisplayName}&apos;s keepsake for years to come.
             </p>
           </div>
@@ -327,17 +359,18 @@ export function Messages() {
         <div className="text-center mb-4 sm:mb-6 md:mb-8 lg:mb-10">
           <div className="space-y-2 sm:space-y-2.5">
             <p
-              className={`${cormorant.className} text-[0.7rem] sm:text-xs md:text-sm uppercase tracking-[0.28em] text-white`}
+              className={`${neutrafaceText.className} text-[0.7rem] sm:text-xs md:text-sm uppercase tracking-[0.28em] text-white`}
+              style={{ fontWeight: 400 }}
             >
               Messages for {coupleDisplayName}
             </p>
-            <h2 className={`${armoire.className} text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white`} style={{ fontWeight: 400 }}>
+            <h2 className={`${yasashiiBold.className} text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white`} style={{ fontWeight: 700 }}>
               Love notes &amp; prayers
             </h2>
           </div>
           
           <p
-            className={`${cormorant.className} text-xs sm:text-sm md:text-base text-white/95 font-light max-w-3xl mx-auto leading-relaxed px-2 sm:px-4 mt-2`}
+            className={`${helveticaCondensed.className} text-xs sm:text-sm md:text-base text-white/95 font-light max-w-3xl mx-auto leading-relaxed px-2 sm:px-4 mt-2`}
           >
             Leave a short note for {coupleDisplayName}. Every wish and prayer becomes part of their forever story.
           </p>
@@ -371,10 +404,10 @@ export function Messages() {
               {/* Outer glow ring */}
               <div className="absolute -inset-2 rounded-full bg-gradient-to-br from-[#324D3E]/35 via-[#324D3E]/25 to-[#324D3E]/25 blur-md opacity-0 hover:opacity-100 transition-opacity duration-300" />
             </div>
-            <h3 className="text-lg sm:text-xl md:text-2xl font-playfair font-bold text-white mb-1.5 sm:mb-2 md:mb-3">
+            <h3 className={`${neutrafaceText.className} text-lg sm:text-xl md:text-2xl text-white mb-1.5 sm:mb-2 md:mb-3`} style={{ fontWeight: 700 }}>
               Messages from Loved Ones
             </h3>
-            <p className="text-xs sm:text-sm md:text-base text-white font-lora max-w-2xl mx-auto px-2 sm:px-4">
+            <p className={`${helveticaCondensed.className} text-xs sm:text-sm md:text-base text-white max-w-2xl mx-auto px-2 sm:px-4`}>
               Read the beautiful messages shared by family and friends
             </p>
           </div>

@@ -33,6 +33,38 @@ const armoire = localFont({
   display: "swap",
 })
 
+const yasashiiBold = localFont({
+  src: "../../Fonts/Fonts_Package_5767477d99d0c7d14eafd5a0b83e7934/YasashiiW03-Bold/web/font/YasashiiW03-Bold.woff2",
+  weight: "700",
+  display: "swap",
+})
+
+const helveticaCondensed = localFont({
+  src: "../../Fonts/helvetica-condensed-regular_lWeSi (1)/Helvetica Condensed Regular/Helvetica Condensed Regular.ttf",
+  display: "swap",
+})
+
+const neutrafaceText = localFont({
+  src: [
+    {
+      path: "../../Fonts/neutraface-text/Neutraface Text Book.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../Fonts/neutraface-text/Neutraface Text Demi.otf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../Fonts/neutraface-text/Neutraface Text Bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  display: "swap",
+})
+
 interface ApiGuest {
   id: string | number
   name: string
@@ -458,23 +490,23 @@ export function GuestList() {
       <div className="relative z-10 text-center mb-4 sm:mb-6 md:mb-8 lg:mb-10 px-2 sm:px-3 md:px-4">
         {/* Small label */}
         <p
-          className={`${cormorant.className} text-[0.7rem] sm:text-xs md:text-sm uppercase tracking-[0.28em] text-white mb-2`}
-          style={{ textShadow: "0 2px 10px rgba(0,0,0,0.8)" }}
+          className={`${neutrafaceText.className} text-[0.7rem] sm:text-xs md:text-sm uppercase tracking-[0.28em] text-white mb-2`}
+          style={{ textShadow: "0 2px 10px rgba(0,0,0,0.8)", fontWeight: 400 }}
         >
           Confirm Your Attendance
         </p>
         
         <h2
-          className={`${armoire.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-1.5 sm:mb-3 md:mb-4`}
-          style={{ textShadow: "0 4px 18px rgba(0,0,0,0.85)", fontWeight: 400 }}
+          className={`${yasashiiBold.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-1.5 sm:mb-3 md:mb-4`}
+          style={{ textShadow: "0 4px 18px rgba(0,0,0,0.85)", fontWeight: 700 }}
         >
           RSVP
         </h2>
         
-        <p className={`${cormorant.className} text-xs sm:text-sm md:text-base text-white/90 font-light max-w-xl mx-auto leading-relaxed px-2 mb-2 sm:mb-3`}>
+        <p className={`${helveticaCondensed.className} text-xs sm:text-sm md:text-base text-white/90 font-light max-w-xl mx-auto leading-relaxed px-2 mb-2 sm:mb-3`}>
           Please search for your name below to confirm your presence at our special day
         </p>
-        <p className={`${cormorant.className} text-[0.65rem] sm:text-xs md:text-sm text-white/80 font-light max-w-xl mx-auto leading-relaxed px-2 mb-2 sm:mb-3`}>
+        <p className={`${helveticaCondensed.className} text-[0.65rem] sm:text-xs md:text-sm text-white/80 font-light max-w-xl mx-auto leading-relaxed px-2 mb-2 sm:mb-3`}>
           RSVP Deadline: {siteConfig.details.rsvp.deadline}
         </p>
         

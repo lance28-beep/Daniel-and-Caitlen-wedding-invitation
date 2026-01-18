@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useMemo } from "react"
 import { motion } from "motion/react"
-import { Cormorant_Garamond, Cinzel } from "next/font/google"
+import { Cormorant_Garamond } from "next/font/google"
 import localFont from "next/font/local"
 import { siteConfig } from "@/content/site"
 
@@ -27,14 +27,30 @@ const cormorant = Cormorant_Garamond({
   weight: ["400", "500", "600"],
 })
 
-const cinzel = Cinzel({
-  subsets: ["latin"],
+const yasashiiBold = localFont({
+  src: "../../Fonts/Fonts_Package_5767477d99d0c7d14eafd5a0b83e7934/YasashiiW03-Bold/web/font/YasashiiW03-Bold.woff2",
   weight: "700",
+  display: "swap",
 })
 
-const armoire = localFont({
-  src: "../../armoire-1-0-trial/armoire-1.0-regular-TRIAL.otf",
-  variable: "--font-armoire",
+const neutrafaceText = localFont({
+  src: [
+    {
+      path: "../../Fonts/neutraface-text/Neutraface Text Book.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../Fonts/neutraface-text/Neutraface Text Demi.otf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../Fonts/neutraface-text/Neutraface Text Bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
   display: "swap",
 })
 
@@ -464,9 +480,10 @@ export function Hero() {
           <div className="space-y-2 sm:space-y-3 md:space-y-4">
             {/* Names & Tagline */}
             <h1
-              className={`${cormorant.className} text-xs sm:text-sm md:text-base lg:text-lg tracking-[0.24em] sm:tracking-[0.28em] uppercase font-medium text-center text-[#F0F0EE]`}
+              className={`${neutrafaceText.className} text-xs sm:text-sm md:text-base lg:text-lg tracking-[0.24em] sm:tracking-[0.28em] uppercase font-medium text-center text-[#F0F0EE]`}
               style={{
                 textShadow: "0 2px 10px rgba(0,0,0,0.75)",
+                fontWeight: 400,
               }}
             >
               Together with our families,
@@ -474,11 +491,11 @@ export function Hero() {
               we joyfully invite you to witness our union.
             </h1>
             <h1
-              className={`${armoire.className} text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl drop-shadow-2xl`}
+              className={`${yasashiiBold.className} text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] 2xl:text-[12rem] drop-shadow-2xl`}
               style={{
                 color: '#FFFFFF',
                 textShadow: "0 0 24px rgba(0,0,0,0.9)",
-                fontWeight: 400,
+                fontWeight: 700,
               }}
             >
               <span className="block">{groomName}</span>
@@ -494,8 +511,8 @@ export function Hero() {
               style={{ textShadow: "0 4px 16px rgba(0,0,0,0.6)" }}
             >
               <span
-                className={`${cinzel.className} text-[0.65rem] sm:text-xs md:text-sm uppercase tracking-[0.4em] sm:tracking-[0.5em] font-light text-white`}
-                style={{ textShadow: "0 2px 14px rgba(12,18,48,0.65)" }}
+                className={`${neutrafaceText.className} text-[0.65rem] sm:text-xs md:text-sm uppercase tracking-[0.4em] sm:tracking-[0.5em] font-light text-white`}
+                style={{ textShadow: "0 2px 14px rgba(12,18,48,0.65)", fontWeight: 400 }}
               >
                 {weddingMonth}
               </span>
@@ -505,8 +522,8 @@ export function Hero() {
               <div className="flex flex-1 items-center justify-end gap-1.5 sm:gap-2.5">
                   <span className="h-[0.5px] flex-1 bg-[#EDE1D3]/45" />
                   <span
-                    className={`${cinzel.className} text-[0.6rem] sm:text-[0.7rem] md:text-xs uppercase tracking-[0.3em] sm:tracking-[0.4em] font-light text-white`}
-                    style={{ textShadow: "0 2px 14px rgba(12,18,48,0.65)" }}
+                    className={`${neutrafaceText.className} text-[0.6rem] sm:text-[0.7rem] md:text-xs uppercase tracking-[0.3em] sm:tracking-[0.4em] font-light text-white`}
+                    style={{ textShadow: "0 2px 14px rgba(12,18,48,0.65)", fontWeight: 400 }}
                   >
                     {ceremonyDayShort}
                   </span>
@@ -520,10 +537,11 @@ export function Hero() {
                     className="absolute inset-0 mx-auto h-[70%] max-h-[180px] w-[100px] sm:w-[140px] md:w-[170px] rounded-full bg-gradient-to-b from-[#E1C49C]/40 via-[#E1C49C]/30 to-transparent blur-[28px] opacity-80"
                   />
                   <span
-                    className={`${cinzel.className} relative text-[4rem] sm:text-[5.5rem] md:text-[6.5rem] lg:text-[7rem] font-light leading-none tracking-wider text-white`}
+                    className={`${neutrafaceText.className} relative text-[4rem] sm:text-[5.5rem] md:text-[6.5rem] lg:text-[7rem] font-light leading-none tracking-wider text-white`}
                     style={{
                       textShadow: "0 0 22px rgba(229,196,156,0.9), 0 0 40px rgba(229,196,156,0.7)",
                       filter: "drop-shadow(0 0 26px rgba(229,196,156,0.65))",
+                      fontWeight: 400,
                     }}
                   >
                     {weddingDayNumber}
@@ -534,8 +552,8 @@ export function Hero() {
                 <div className="flex flex-1 items-center gap-1.5 sm:gap-2.5">
                   <span className="h-[0.5px] w-6 sm:w-8 md:w-10 bg-[#EDE1D3]/45" />
                   <span
-                    className={`${cinzel.className} text-[0.6rem] sm:text-[0.7rem] md:text-xs uppercase tracking-[0.3em] sm:tracking-[0.4em] font-light text-white`}
-                    style={{ textShadow: "0 2px 14px rgba(12,18,48,0.65)" }}
+                    className={`${neutrafaceText.className} text-[0.6rem] sm:text-[0.7rem] md:text-xs uppercase tracking-[0.3em] sm:tracking-[0.4em] font-light text-white`}
+                    style={{ textShadow: "0 2px 14px rgba(12,18,48,0.65)", fontWeight: 400 }}
                   >
                     {ceremonyTime.split(",")[0]}
                   </span>
@@ -544,8 +562,8 @@ export function Hero() {
               </div>
 
               <span
-                className={`${cinzel.className} text-[0.65rem] sm:text-xs md:text-sm uppercase tracking-[0.4em] sm:tracking-[0.5em] font-light text-white`}
-                style={{ textShadow: "0 2px 14px rgba(12,18,48,0.65)" }}
+                className={`${neutrafaceText.className} text-[0.65rem] sm:text-xs md:text-sm uppercase tracking-[0.4em] sm:tracking-[0.5em] font-light text-white`}
+                style={{ textShadow: "0 2px 14px rgba(12,18,48,0.65)", fontWeight: 400 }}
               >
                 {weddingYear}
               </span>
@@ -555,9 +573,10 @@ export function Hero() {
           {/* Venue */}
           <div className="space-y-1 sm:space-y-1.5 pt-1 sm:pt-2">
             <p
-              className={`${cinzel.className} text-xs sm:text-sm md:text-base lg:text-lg uppercase tracking-[0.22em] sm:tracking-[0.26em] md:tracking-[0.3em] text-[#F0F0EE] font-medium`}
+              className={`${neutrafaceText.className} text-xs sm:text-sm md:text-base lg:text-lg uppercase tracking-[0.22em] sm:tracking-[0.26em] md:tracking-[0.3em] text-[#F0F0EE] font-medium`}
               style={{
                 textShadow: "0 2px 18px rgba(0,0,0,0.9)",
+                fontWeight: 400,
               }}
             >
               {siteConfig.ceremony.venue}
@@ -567,9 +586,10 @@ export function Hero() {
           {/* Call-to-action section */}
           <div className="pt-3 sm:pt-4 md:pt-5 flex flex-col gap-3 sm:gap-4 items-center max-w-2xl mx-auto w-full px-4">
             <p
-              className={`${cinzel.className} text-[0.7rem] sm:text-xs md:text-sm lg:text-base uppercase tracking-[0.24em] sm:tracking-[0.28em] text-[#F0F0EE]/95 font-normal leading-relaxed text-center px-4`}
+              className={`${neutrafaceText.className} text-[0.7rem] sm:text-xs md:text-sm lg:text-base uppercase tracking-[0.24em] sm:tracking-[0.28em] text-[#F0F0EE]/95 font-normal leading-relaxed text-center px-4`}
               style={{
                 textShadow: "0 2px 14px rgba(0,0,0,0.7)",
+                fontWeight: 400,
               }}
             >
               Your presence, prayers, and love will mean the world to us.
@@ -593,7 +613,7 @@ export function Hero() {
                 e.currentTarget.style.boxShadow = "0 10px 24px rgba(255,216,63,0.4)";
               }}
             >
-              <span className="relative z-10 inline-flex h-full min-h-[3rem] sm:min-h-[3.25rem] w-full items-center justify-center px-6 sm:px-8 text-[0.65rem] sm:text-[0.7rem] md:text-xs uppercase tracking-[0.32em] sm:tracking-[0.36em] text-[#0C1230] font-semibold transition-all duration-300" style={{ textShadow: "0 1px 6px rgba(0,0,0,0.2)" }}>
+              <span className={`${neutrafaceText.className} relative z-10 inline-flex h-full min-h-[3rem] sm:min-h-[3.25rem] w-full items-center justify-center px-6 sm:px-8 text-[0.65rem] sm:text-[0.7rem] md:text-xs uppercase tracking-[0.32em] sm:tracking-[0.36em] text-[#0C1230] font-semibold transition-all duration-300`} style={{ textShadow: "0 1px 6px rgba(0,0,0,0.2)", fontWeight: 600 }}>
                 Confirm Attendance
               </span>
             </a>

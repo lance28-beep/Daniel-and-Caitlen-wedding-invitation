@@ -27,6 +27,38 @@ const armoire = localFont({
   display: "swap",
 })
 
+const yasashiiBold = localFont({
+  src: "../../Fonts/Fonts_Package_5767477d99d0c7d14eafd5a0b83e7934/YasashiiW03-Bold/web/font/YasashiiW03-Bold.woff2",
+  weight: "700",
+  display: "swap",
+})
+
+const helveticaCondensed = localFont({
+  src: "../../Fonts/helvetica-condensed-regular_lWeSi (1)/Helvetica Condensed Regular/Helvetica Condensed Regular.ttf",
+  display: "swap",
+})
+
+const neutrafaceText = localFont({
+  src: [
+    {
+      path: "../../Fonts/neutraface-text/Neutraface Text Book.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../Fonts/neutraface-text/Neutraface Text Demi.otf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../Fonts/neutraface-text/Neutraface Text Bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  display: "swap",
+})
+
 const galleryHashtag = "#JohnAndVanessaWedding"
 
 const galleryItems = [
@@ -186,19 +218,20 @@ export function Gallery() {
       <div className="relative z-10 text-center mb-8 sm:mb-10 md:mb-12 px-4">
         <div className="space-y-2 sm:space-y-3">
           <p
-            className={`${cormorant.className} text-[0.7rem] sm:text-xs md:text-sm uppercase tracking-[0.28em] text-white`}
+            className={`${neutrafaceText.className} text-[0.7rem] sm:text-xs md:text-sm uppercase tracking-[0.28em] text-white`}
+            style={{ fontWeight: 400 }}
           >
             Cherished Moments with {coupleDisplayName}
           </p>
           <h2
-            className={`${armoire.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white`}
-            style={{ fontWeight: 400 }}
+            className={`${yasashiiBold.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white`}
+            style={{ fontWeight: 700 }}
           >
             Our Love Story in Pictures
           </h2>
         </div>
 
-        <p className={`${cormorant.className} text-xs sm:text-sm md:text-base text-white font-light max-w-xl mx-auto leading-relaxed mt-3`}>
+        <p className={`${helveticaCondensed.className} text-xs sm:text-sm md:text-base text-white font-light max-w-xl mx-auto leading-relaxed mt-3`}>
           Beautiful frames capturing the journey of {coupleDisplayName} — each photograph a precious memory of laughter, love, and the moments that led us to forever.
         </p>
 

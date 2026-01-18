@@ -16,6 +16,38 @@ const armoire = localFont({
   display: "swap",
 })
 
+const yasashiiBold = localFont({
+  src: "../../Fonts/Fonts_Package_5767477d99d0c7d14eafd5a0b83e7934/YasashiiW03-Bold/web/font/YasashiiW03-Bold.woff2",
+  weight: "700",
+  display: "swap",
+})
+
+const helveticaCondensed = localFont({
+  src: "../../Fonts/helvetica-condensed-regular_lWeSi (1)/Helvetica Condensed Regular/Helvetica Condensed Regular.ttf",
+  display: "swap",
+})
+
+const neutrafaceText = localFont({
+  src: [
+    {
+      path: "../../Fonts/neutraface-text/Neutraface Text Book.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../Fonts/neutraface-text/Neutraface Text Demi.otf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../Fonts/neutraface-text/Neutraface Text Bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  display: "swap",
+})
+
 export function Welcome() {
   const brideName = siteConfig.couple.brideNickname || siteConfig.couple.bride
   const groomName = siteConfig.couple.groomNickname || siteConfig.couple.groom
@@ -46,14 +78,14 @@ export function Welcome() {
           {/* Main heading */}
           <div className="space-y-1.5 sm:space-y-2.5">
             <p
-              className={`${cormorant.className} text-[0.7rem] sm:text-xs md:text-sm uppercase tracking-[0.28em] text-[#FFFFFF]`}
-              style={{ textShadow: "0 1px 8px rgba(12,18,48,0.4)" }}
+              className={`${neutrafaceText.className} text-[0.7rem] sm:text-xs md:text-sm uppercase tracking-[0.28em] text-[#FFFFFF]`}
+              style={{ textShadow: "0 1px 8px rgba(12,18,48,0.4)", fontWeight: 400 }}
             >
               {groomName} &amp; {brideName}
             </p>
             <h2
-              className={`${armoire.className} text-3xl sm:text-4xl md:text-5xl lg:text-[2.9rem] text-[#FFFFFF]`}
-              style={{ textShadow: "0 3px 14px rgba(12,18,48,0.5)", fontWeight: 400 }}
+              className={`${yasashiiBold.className} text-3xl sm:text-4xl md:text-5xl lg:text-[2.9rem] text-[#FFFFFF]`}
+              style={{ textShadow: "0 3px 14px rgba(12,18,48,0.5)", fontWeight: 700 }}
             >
               Welcome to our wedding website
             </h2>
@@ -62,14 +94,14 @@ export function Welcome() {
             {/* Verse */}
             <div className="space-y-1">
               <p
-                className={`${cormorant.className} text-xs sm:text-sm md:text-base text-[#FFFFFF]/90 italic`}
+                className={`${helveticaCondensed.className} text-xs sm:text-sm md:text-base text-[#FFFFFF]/90 italic`}
                 style={{ textShadow: "0 1px 8px rgba(12,18,48,0.3)" }}
               >
                 &quot;And now these three remain: faith, hope and love. But the greatest of these is love.&quot;
               </p>
               <p
-                className={`${cormorant.className} text-[0.65rem] sm:text-xs md:text-sm text-[#FFFFFF]/80 tracking-[0.2em] uppercase`}
-                style={{ textShadow: "0 1px 6px rgba(12,18,48,0.3)" }}
+                className={`${neutrafaceText.className} text-[0.65rem] sm:text-xs md:text-sm text-[#FFFFFF]/80 tracking-[0.2em] uppercase`}
+                style={{ textShadow: "0 1px 6px rgba(12,18,48,0.3)", fontWeight: 400 }}
               >
                 1 Corinthians 13:13
               </p>
@@ -85,7 +117,7 @@ export function Welcome() {
 
           {/* Body text */}
           <div
-            className={`${cormorant.className} text-[0.85rem] sm:text-sm md:text-base leading-relaxed sm:leading-7 text-[#FFFFFF] space-y-3 sm:space-y-4`}
+            className={`${helveticaCondensed.className} text-[0.85rem] sm:text-sm md:text-base leading-relaxed sm:leading-7 text-[#FFFFFF] space-y-3 sm:space-y-4`}
           >
             <p>
               We&apos;ve found a love that&apos;s a true blessing, and we give thanks to God for writing the

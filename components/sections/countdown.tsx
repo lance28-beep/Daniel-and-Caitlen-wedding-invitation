@@ -4,7 +4,8 @@ import { useEffect, useState } from "react"
 import { Section } from "@/components/section"
 import Image from "next/image"
 import { motion } from "motion/react"
-import { Cormorant_Garamond, Cinzel } from "next/font/google"
+import { Cormorant_Garamond } from "next/font/google"
+import localFont from "next/font/local"
 import { siteConfig } from "@/content/site"
 import Counter from "@/components/Counter"
 
@@ -25,9 +26,36 @@ const cormorant = Cormorant_Garamond({
   weight: ["400", "500", "600"],
 })
 
-const cinzel = Cinzel({
-  subsets: ["latin"],
-  weight: ["700"],
+const yasashiiBold = localFont({
+  src: "../../Fonts/Fonts_Package_5767477d99d0c7d14eafd5a0b83e7934/YasashiiW03-Bold/web/font/YasashiiW03-Bold.woff2",
+  weight: "700",
+  display: "swap",
+})
+
+const helveticaCondensed = localFont({
+  src: "../../Fonts/helvetica-condensed-regular_lWeSi (1)/Helvetica Condensed Regular/Helvetica Condensed Regular.ttf",
+  display: "swap",
+})
+
+const neutrafaceText = localFont({
+  src: [
+    {
+      path: "../../Fonts/neutraface-text/Neutraface Text Book.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../Fonts/neutraface-text/Neutraface Text Demi.otf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../Fonts/neutraface-text/Neutraface Text Bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  display: "swap",
 })
 
 function CountdownUnit({ value, label }: CountdownUnitProps) {
@@ -193,11 +221,11 @@ export function Countdown() {
           <div className="w-8 sm:w-12 md:w-16 h-px bg-white/25" />
         </div>
         
-        <h2 className="imperial-script-regular text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal text-white mb-2 sm:mb-3 md:mb-4">
+        <h2 className={`${yasashiiBold.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white mb-2 sm:mb-3 md:mb-4`} style={{ fontWeight: 700 }}>
           Counting down to our forever
         </h2>
         
-        <p className="text-xs sm:text-sm md:text-base lg:text-lg text-white/95 font-light max-w-xl mx-auto leading-relaxed px-2">
+        <p className={`${helveticaCondensed.className} text-xs sm:text-sm md:text-base lg:text-lg text-white/95 font-light max-w-xl mx-auto leading-relaxed px-2`}>
           Every heartbeat brings us closer to the moment when two hearts become one. Join {groomNickname} and {brideNickname} as they count down to forever.
         </p>
         
@@ -234,11 +262,13 @@ export function Countdown() {
             <div className="relative sm:rounded-3xl p-6 sm:p-8 md:p-10 mb-6 sm:mb-8">
               <div className="w-full max-w-2xl mx-auto">
                 <div
-                  className={`${cinzel.className} flex flex-col items-center gap-1.5 sm:gap-2.5 md:gap-3 text-white font-bold`}
+                  className={`${neutrafaceText.className} flex flex-col items-center gap-1.5 sm:gap-2.5 md:gap-3 text-white`}
+                  style={{ fontWeight: 400 }}
                 >
                   {/* Month */}
                   <span
                     className="text-[0.65rem] sm:text-xs md:text-sm uppercase tracking-[0.4em] sm:tracking-[0.5em] text-white"
+                    style={{ fontWeight: 400 }}
                   >
                     {ceremonyMonth}
                   </span>
@@ -250,6 +280,7 @@ export function Countdown() {
                       <span className="h-[0.5px] flex-1 bg-white/45" />
                       <span
                         className="text-[0.6rem] sm:text-[0.7rem] md:text-xs uppercase tracking-[0.3em] sm:tracking-[0.4em] text-white"
+                        style={{ fontWeight: 400 }}
                       >
                         {ceremonyDayShort}
                       </span>
@@ -259,8 +290,8 @@ export function Countdown() {
                     {/* Day number */}
                     <div className="relative flex items-center justify-center px-3 sm:px-4 md:px-5">
                       <span
-                        className={`${cinzel.className} relative text-[3rem] sm:text-[4.5rem] md:text-[5.5rem] lg:text-[6rem] font-bold leading-none tracking-wider`}
-                        style={{ color: '#FFD83F' }}
+                        className={`${neutrafaceText.className} relative text-[3rem] sm:text-[4.5rem] md:text-[5.5rem] lg:text-[6rem] leading-none tracking-wider`}
+                        style={{ color: '#FFD83F', fontWeight: 400 }}
                       >
                         {ceremonyDayNumber.padStart(2, "0")}
                       </span>
@@ -271,6 +302,7 @@ export function Countdown() {
                       <span className="h-[0.5px] w-6 sm:w-8 md:w-10 bg-white/45" />
                       <span
                         className="text-[0.6rem] sm:text-[0.7rem] md:text-xs uppercase tracking-[0.3em] sm:tracking-[0.4em] text-white"
+                        style={{ fontWeight: 400 }}
                       >
                         {ceremonyTimeDisplay.split(",")[0]}
                       </span>
@@ -281,6 +313,7 @@ export function Countdown() {
                   {/* Year */}
                   <span
                     className="text-[0.65rem] sm:text-xs md:text-sm uppercase tracking-[0.4em] sm:tracking-[0.5em] text-white"
+                    style={{ fontWeight: 400 }}
                   >
                     {ceremonyYear}
                   </span>
