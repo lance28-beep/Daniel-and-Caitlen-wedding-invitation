@@ -63,7 +63,7 @@ export function Registry() {
               <div className="flex flex-col items-center gap-4 w-full mt-4">
                 <div className="w-56 h-56 sm:w-64 sm:h-64 border-2 border-dashed border-[#1D2A73]/40 rounded-xl sm:rounded-2xl flex items-center justify-center bg-white relative overflow-hidden">
                   <Image
-                    src="/QR/monogram.png"
+                    src="/QR/newQR.png"
                     alt="GCash QR code"
                     fill
                     sizes="256px"
