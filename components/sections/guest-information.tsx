@@ -117,7 +117,7 @@ export function GuestInformation() {
 
               <div className="relative w-full aspect-[4/3] sm:aspect-[5/3] rounded-xl overflow-hidden border border-[#1D2A73]/40 bg-white mb-3">
                 <Image
-                  src="/Details/attire.png"
+                  src="/Details/newAttire.png"
                   alt="Attire guideline"
                   fill
                   className="object-contain"
