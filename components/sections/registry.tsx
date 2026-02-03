@@ -24,7 +24,6 @@ const helveticaCondensed = localFont({
 })
 
 export function Registry() {
-  const [selectedOption, setSelectedOption] = useState<"gcash" | "smgift">("gcash")
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [zoom, setZoom] = useState(1)
   const [position, setPosition] = useState({ x: 0, y: 0 })
@@ -210,39 +209,15 @@ export function Registry() {
           <div className="absolute inset-0 bg-gradient-to-br from-[#1D2A73]/20 via-transparent to-[#1D2A73]/10 pointer-events-none" />
 
           <div className="relative z-10 flex flex-col items-center justify-center">
-            {/* Toggle Buttons */}
-            <div className="flex gap-2 mb-4 sm:mb-6">
-              <button
-                onClick={() => setSelectedOption("gcash")}
-                className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-semibold text-xs sm:text-sm transition-all duration-300 ${
-                  selectedOption === "gcash"
-                    ? "bg-[#1D2A73] text-white shadow-lg scale-105"
-                    : "bg-white/80 text-[#1D2A73] hover:bg-white/90 border-2 border-[#1D2A73]/40"
-                }`}
-              >
-                GCash
-              </button>
-              <button
-                onClick={() => setSelectedOption("smgift")}
-                className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-semibold text-xs sm:text-sm transition-all duration-300 ${
-                  selectedOption === "smgift"
-                    ? "bg-[#1D2A73] text-white shadow-lg scale-105"
-                    : "bg-white/80 text-[#1D2A73] hover:bg-white/90 border-2 border-[#1D2A73]/40"
-                }`}
-              >
-                SM Gift
-              </button>
-            </div>
-
             <div className="relative bg-white rounded-xl sm:rounded-2xl border-2 border-dashed border-[#1D2A73]/40 p-5 sm:p-6 md:p-8 text-center shadow-[0_6px_24px_rgba(29,42,115,0.15)] max-w-md">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-white px-3 py-1 rounded-full shadow-sm border-2 border-[#1D2A73]/50 text-xs font-semibold tracking-[0.2em] text-[#1D2A73] uppercase">
-                {selectedOption === "gcash" ? "GCash:" : "SM Gift:"}
+                SM Gift:
               </div>
               <div className="flex flex-col items-center gap-4 w-full mt-4">
                 <div className="w-56 h-56 sm:w-64 sm:h-64 border-2 border-dashed border-[#1D2A73]/40 rounded-xl sm:rounded-2xl flex items-center justify-center bg-white relative overflow-hidden">
                   <Image
-                    src={selectedOption === "gcash" ? "/QR/GcashNew.png" : "/QR/SMGIft.png"}
-                    alt={selectedOption === "gcash" ? "GCash QR code" : "SM Gift QR code"}
+                    src="/QR/SMGIft.png"
+                    alt="SM Gift QR code"
                     fill
                     sizes="256px"
                     className="object-contain p-4"
